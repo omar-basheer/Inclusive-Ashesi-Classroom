@@ -42,7 +42,7 @@ function SignUp() {
                                             </div>
                                         </div>
                                         <div className="form-login-button">
-                                            <input type="submit" className="login-button" value="Log In"></input>
+                                            <input type="submit" className="login-button" value="Sign Up"></input>
                                         </div>
                                     </div>
                                 </form>
@@ -53,7 +53,6 @@ function SignUp() {
                             <div className="login-footer__links">
                                 <a className="flink" href="http://help.instructure.com/">Help</a>
                                 <a className="flink" href="https://ashesi.instructure.com/privacy_policy">Privacy Policy</a>
-                                {/* <a className="flink" href="https://ashesi.instructure.com/privacy_policy">Acceptable Use Policy</a> */}
                                 <a className="flink" href="http://help.instructure.com/">Facebook</a>
                                 <a className="flink" href="https://ashesi.instructure.com/privacy_policy">Twitter</a>
                             </div>
