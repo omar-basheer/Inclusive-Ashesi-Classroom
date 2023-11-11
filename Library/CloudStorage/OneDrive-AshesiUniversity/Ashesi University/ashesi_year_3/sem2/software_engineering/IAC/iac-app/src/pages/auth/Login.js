@@ -1,7 +1,7 @@
 import React from "react";
 import '../../styles/auth.css'
 
-function Login() {
+function Login({switchToSignUp}) {
     return (
         <div className="login-container">
             <div className="login-top">
@@ -31,7 +31,7 @@ function Login() {
                                                 <a>Forgot Password?</a>
                                             </div>
                                             <div className="login-forgot">
-                                                <a>Don't have an account?</a>
+                                                <a onClick={switchToSignUp}>Don't have an account?</a>
                                             </div>
                                         </div>
                                         <div className="form-login-button">
