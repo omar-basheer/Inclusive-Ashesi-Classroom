@@ -11,7 +11,7 @@ function Layout(){
         <div className="layout-wrapper">
             <Header />
             <Breadcrumbs />
-            <Sidemenu />
+            
             <Outlet />
         </div>
     )

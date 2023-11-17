@@ -1,14 +1,16 @@
 import React from "react";
 import '../styles/global.css'
 import { useNavigate } from 'react-router-dom';
+import Sidemenu from "../components/Sidemenu/Sidemenu";
 
 function Screening() {
-    return (
+    return(
         <div className="iac-app">
-            <div className="iac-layout-columns">
+            <Sidemenu />
+            <div className="iac-layout-columns"> 
             </div>
         </div>
     )
-}
+    }
 
 export default Screening

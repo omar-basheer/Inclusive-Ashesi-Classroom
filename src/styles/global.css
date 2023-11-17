@@ -23,7 +23,6 @@ body{
 }
 
 .iac-layout-columns{
-    margin-left: 192px;
     position: relative;
     box-sizing: border-box;
     z-index: 10;
@@ -31,3 +30,24 @@ body{
     min-width: 1px;
 }
 
+.iac-main-app-content{
+    display: flex
+}
+
+.iac-main-content-wrapper{
+    flex: 1;
+    min-width: 1px;
+    box-sizing: border-box;
+}
+
+.iac-main-content{
+    padding: 24px;
+}
+
+
+.iac-main-right-side-wrapper{
+    display: block;
+    width: 288px;
+    padding-left: 24px;
+    position: relative;
+}
