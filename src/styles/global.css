@@ -22,3 +22,12 @@ body{
     background-color: #6D6E70;
 }
 
+.iac-layout-columns{
+    margin-left: 192px;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 10;
+    flex: 1 0 auto;
+    min-width: 1px;
+}
+

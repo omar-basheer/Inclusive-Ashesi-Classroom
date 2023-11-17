@@ -19,18 +19,12 @@ function App() {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<Layout />}>
-                {isLoggedIn ? (
-                        <>
-                            <Route path="/courses" element={<Courses />} />
-                            <Route path="/screening" element={<Screening />} />
-                        </>
-                    ) : (
-                        navigate('login')
-                    )}
-                </Route>
                 <Route path="/login" element={<Login onLogin={handleLogin} />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/user" element={<Layout />}>
+                    <Route path="/user/courses" element={<Courses />} />
+                    <Route path="/user/screening" element={<Screening />} />
+                </Route>
             </Routes>
         </div>
     );
