@@ -1,0 +1,51 @@
+.toggle-and-crumbs{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #c7cdd1;
+    margin: 0 24px;
+    min-height: 4.5rem;
+    box-sizing: border-box;
+}
+
+.course-menu-toggle{
+    margin-right: 2px;
+    padding: 0;
+    width: 36px;
+    height: 30px;
+    border-color: transparent;
+    cursor: pointer;
+    color: #923D41;
+    background-color: transparent;
+}
+
+.app-crumbs{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    
+}
+.bread-crumbs{
+    background-color: #fff;
+}
+
+.crumbs{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.crumb-course-link{
+    color: #2d3b45;
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: top;
+    font-size: 1.0rem;
+}
+
+.right-of-crumbs{
+    display: flex;
+    flex: 1;
+    flex-direction: row-reverse;
+}
+

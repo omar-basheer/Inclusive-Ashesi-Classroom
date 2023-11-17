@@ -1,0 +1,119 @@
+
+.iac-app-header{
+    width: 74px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    background-color: #923D41
+}
+
+.main-nav{
+    box-sizing: border-box;
+    flex: 1 0 auto;
+}
+
+.logo-container{
+    width: 100%;
+    background-color: #923D41;
+    box-sizing: border-box;
+}
+
+.logomark{
+    display: block;
+    overflow: hidden;
+    background-image: url('https://instructure-uploads-eu.s3.eu-west-1.amazonaws.com/account_153630000000000001/attachments/658/Ashesi%20logo%20image%20and%20text.png');
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: transform .3s;
+    height: 77px;
+    /* height: 95px; */
+}
+
+.logo-container .a{
+    color: #923D41;
+    text-decoration: none;
+}
+
+.menu-list{
+   margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu-list-item{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    padding-top: 0.25rem;
+}
+
+/* .menu-list-item :hover{
+    background-color: #7D3A3A;
+} */
+
+.menu-list-link{
+    box-sizing: border-box;
+    transition: background-color .3s,padding .3s;
+    position: relative;
+    text-align: center;
+    display: block;
+    color: #ffffff;
+    padding: 0.25rem 0;
+    cursor: pointer;
+}
+
+.menu-icon-container{
+    transform: translate3d(0, 0, 0);
+    position: relative;
+    z-index: 1;
+    width: 48px;
+    margin: 1px auto;
+    color: #ffffff;
+}
+
+.iac-avatar{
+    width: 32px;
+    height: 32px;
+    transform: translate3d(0, 0, 0);
+    overflow: hidden;
+    border-radius: 100%;
+    border: 1.5px solid #ffffff;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.iac-icon{
+    width: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    fill: #ffffff;
+}
+
+.menu-item-text{
+    transition: none;
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+    opacity: 1;
+    text-align: center;
+    display: block;
+    line-height: 1.4;
+    border-radius: 0;
+    margin: 1px 0 0;
+    padding: 0;
+    background: transparent;
+    white-space: normal;
+    word-wrap: break-word;
+    font-size: 0.775rem;
+    font-weight: 400;
+}

@@ -1,0 +1,7 @@
+.layout-wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-left: 74px;
+    box-sizing: border-box;
+    min-height: 100vh;
+}

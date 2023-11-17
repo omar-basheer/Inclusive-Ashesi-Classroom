@@ -1,0 +1,24 @@
+
+body{
+    font-size: 16px;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #6D6E70;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    background: #fff;
+    /* font-weight: 300; */
+    margin: 0
+}
+
+.iac-app{
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+.iac-layout-wrapper{
+    margin-left: 74px;
+    background-color: #6D6E70;
+}
+
