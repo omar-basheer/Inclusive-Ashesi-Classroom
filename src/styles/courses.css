@@ -68,5 +68,6 @@ h1{
 } */
 
 .iac-main-right-side-wrapper{
-    
+    display: block;
+    width: 288px;
 }
