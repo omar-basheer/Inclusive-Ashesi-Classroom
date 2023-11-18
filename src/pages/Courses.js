@@ -1,11 +1,13 @@
 import React from "react";
 import '../styles/global.css'
 import '../styles/courses.css'
-import Sidemenu from "../components/Sidemenu/Sidemenu";
-import ToDo from "../components/ToDo/ToDo";
-import PageContent from "../components/PageContent/PageContent";
+import Sidemenu from "../components/Sidemenu";
+import ToDo from "../components/ToDo";
+import PageContent from "../components/PageContent";
+import RightSide from "../components/RightSide";
 
 function Courses() {
+    const Title = "[23_SEM1_CS415_B] - Software Engineering"
     return (
         <div className="iac-app">
             <div className="iac-layout-columns">
@@ -13,29 +15,13 @@ function Courses() {
                     <Sidemenu />
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">
-                            <PageContent />
+                            <PageContent 
+                            contentTitle={Title}
+                            />
                         </div>
                     </div>
                     <div className="iac-main-right-side-wrapper">
-                        <div className="right-side">
-                            <div className="show-secondary">
-                                <div class="course-options">
-                                    <a class="btn button-sidebar-wide" href="/courses/1946?view=feed">
-                                        <i class="icon-stats"></i>
-                                        View Course Stream
-                                    </a>
-                                    <a class="btn button-sidebar-wide" href="/courses/1946?view=feed">
-                                        <i class="icon-calender"></i>
-                                        View Course Calender
-                                    </a>
-                                    <a class="btn button-sidebar-wide" href="/courses/1946?view=feed">
-                                        <i class="icon-unmuted"></i>
-                                        View Course Notifications
-                                    </a>
-                                </div>
-                            </div>
-                            <ToDo />
-                        </div>
+                        <RightSide />
                     </div>
                 </div>
             </div>

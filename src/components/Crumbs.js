@@ -1,9 +1,8 @@
 import React from 'react'
-import "../Breadcrumbs/Crumbs.js"
-import "../../styles/global.css"
-import "../Breadcrumbs/crumbs.css"
+import "../styles/global.css"
+import "../styles/crumbs.css"
 
-function Breadcrumbs() {
+function Crumbs() {
     return (
         <div className='toggle-and-crumbs'>
             <button className='course-menu-toggle' type='button'>
@@ -27,4 +26,4 @@ function Breadcrumbs() {
     );
 }
 
-export default Breadcrumbs
+export default Crumbs

@@ -1,6 +1,6 @@
 import React from "react";
-import "../../styles/global.css"
-import "../Sidemenu/sidemenu.css"
+import "../styles/global.css"
+import "../styles/sidemenu.css"
 
 function Sidemenu() {
     return (
