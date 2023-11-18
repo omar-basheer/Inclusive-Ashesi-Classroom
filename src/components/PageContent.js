@@ -1,8 +1,8 @@
 import React from "react";
-import "../../styles/global.css"
-import "../PageContent/page_content.css"
+import "../styles/global.css"
+import "../styles/page_content.css"
 
-function PageContent(){
+function PageContent({contentTitle}){
     return(
         <div className="course-home-content">
         <div className="title-bar-outer-container">
@@ -10,7 +10,7 @@ function PageContent(){
                 <div className="page-toolbar">
                     <div className="page-toolbar-start">
                         <div className="page-heading">
-                            <h1 className="course-title">[23_SEM1_CS415_B] - Software Engineering</h1>
+                            <h1 className="course-title">{contentTitle}</h1>
                         </div>
                     </div>
                     <div className="page-toolbar-end"></div>
