@@ -24,8 +24,6 @@ function Breadcrumbs() {
             </div>
             <div className='right-of-crumbs'></div>
         </div>
-
-
     );
 }
 
