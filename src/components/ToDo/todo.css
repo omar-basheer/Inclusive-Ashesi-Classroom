@@ -1,0 +1,136 @@
+.event-list{
+
+}
+
+.ToDoSidebar{
+
+}
+
+.todo-list-header{
+    margin-top: 1.0625rem;
+    font-size: 1rem;
+    overflow: hidden;
+    border-bottom: 1px solid #c7cdd1;
+    padding-bottom: 6px;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.block-list{
+    box-sizing: border-box;
+    font-family: LatoWeb, "Lato Extended", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    max-width: 100%;
+    overflow: visible;
+    display: block;
+    overscroll-behavior: auto;
+    padding-inline: 0px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 6px 25px;
+}
+
+.list-item{
+    padding: 0px;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: visible;
+    overscroll-behavior: auto;
+    font-weight: 400;
+    font-family: LatoWeb, "Lato Extended", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    color: rgb(45, 59, 69);
+    font-size: 1rem;
+}
+
+.ToDoSidebarItem{
+    line-height: 1.1;
+    display: flex;
+    align-items: flex-start;
+    margin: 0 0 6px;
+}
+
+.ToDoSidebarItemSvg{
+    width: 1em;
+    height: 1em;
+    fill: currentcolor;
+    display: inline-block;
+    overflow: visible;
+    color: inherit;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.ToDoSidebarItem__Info{
+    margin-top: 4px;
+    min-width: 0;
+    flex: 1;
+    padding: 0 6px 0 9px;
+}
+.ToDoSidebarItem__Title{
+    margin-bottom: 3px;
+}
+
+.view-link{
+    max-width: 100%;
+    overflow: visible;
+    overscroll-behavior: auto;
+    box-sizing: border-box;
+    font-family: LatoWeb, "Lato Extended", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    transition: outline-color 0.2s ease 0s;
+    vertical-align: baseline;
+    outline: transparent solid 0.125rem;
+    border-radius: 0.125rem;
+    outline-offset: 0.25rem;
+    cursor: pointer;
+    color: rgb(7, 112, 163);
+    text-decoration: underline;
+}
+
+.link-style{
+    font-family: LatoWeb, "Lato Extended", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.775rem;
+    line-height: 1.125;
+    letter-spacing: 0px;
+}
+
+.course-link-style{
+    font-family: LatoWeb, "Lato Extended", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(85, 101, 114);
+    font-weight: 500;
+    font-size: 0.775rem;
+    line-height: 1.125;
+    letter-spacing: 0px;
+    list-style-type: none;
+}
+
+.view-block{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: LatoWeb, "Lato Extended", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    max-width: 100%;
+    overflow: visible;
+    display: block;
+    overscroll-behavior: auto;
+}
+
+.inlineListItem{
+    margin-inline-start: 0px;
+    padding: 0px;
+    max-width: 100%;
+    display: inline-block;
+    overscroll-behavior: auto;
+    font-weight: 400;
+    font-family: LatoWeb, "Lato Extended", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    vertical-align: middle;
+    box-sizing: border-box;
+    line-height: 1.25;
+    color: rgb(85, 101, 114);
+    font-size: 0.875rem;
+}
+
+.inlineListItem__delimiter{
+    margin-inline: 0.5rem;
+}
+

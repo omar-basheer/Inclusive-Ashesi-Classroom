@@ -1,73 +1,56 @@
-.course-home-content{
-
-}
-
-.title-bar-outer-container{
-    min-height: 64px;
-    clear: right;
-}
-
-.show-content{
-
-}
-
-.sticky-toolbar{
-
-}
-
-.page-toolbar{
-    padding-bottom: 6px;
-    display: flex;
-    align-items: stretch;
-    border-bottom: 1px solid #c7cdd1;
-    background-color: #fff;
-    min-height: 33px;
-}
-
-.page-toolbar-start{
-    display: flex;
-    flex-grow: 1;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: stretch;
-    align-content: stretch;
-}
-
-.course-title{
-    display: block;
-    font-size: 1.8em;
-    font-weight: bold;
-    margin: 0;
-    color: #666;
-}
-
-h1{
-    line-height: 1.5;
-}
-
-.page-toolbar-end{
-    display: flex;
-    flex-grow: 0;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: stretch;
-    align-content: center;
-    white-space: nowrap;
-}
-
-.show-content{
-    padding-top: 25px;
-    word-wrap: break-word;
-    overflow-x: auto;
-    box-sizing: border-box;
-}
-
-/* @media only screen and (min-width: 992px)
-.show-content {
-    padding: 0 24px 0 12px;
-} */
 
 .iac-main-right-side-wrapper{
     display: block;
-    width: 288px;
+    width: 278px;
+    position: relative;
+    box-sizing: border-box;
+    min-width: 1px;
+    padding: 28px;
+}
+
+.right-sde{
+    position: relative;
+    z-index: 10;
+    min-height: 20px;
+    display: block;
+}
+
+.show-secondary{
+
+}
+.course-options{
+
+}
+
+.button-sidebar-wide{
+    text-align: left;
+    margin: 5px auto;
+    display: block;
+    background-image: initial;
+}
+
+.btn{
+    background: #fff;
+    color: #2d3b45;
+    border: 1px solid;
+    border-color: #c7cdd1;
+    border-radius: 3px;
+    transition: background-color .2s ease-in-out;
+    position: relative;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 1rem;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    text-decoration: none;
+    overflow: hidden;
+    text-shadow: none;
+}
+
+.icon-stats{
+    display: inline-block;
+    font-style: normal !important;
+    line-height: 1;
 }
