@@ -12,7 +12,7 @@ function Header() {
                 </div>
                 <ul className='menu-list'>
                     <li className='menu-list-item'>
-                        <a className='menu-list-link' /*href='/profile/settings'*/>
+                        <a className='menu-list-link' href='/user/syspref'>
                             <div className='menu-icon-container'>
                                 <div className='iac-avatar'>
                                     <img src="https://ashesi.instructure.com/images/thumbnails/276048/t81LkJEf3Qy6MbWqYtELhqeX9EkW6baNoiEMmXhZ" alt="Omar,Basheer" ></img>
