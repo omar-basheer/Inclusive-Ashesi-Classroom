@@ -1,10 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../../styles/auth.css'
 
-// function Login({switchToSignUp}) {
 function Login() {
     const navigate = useNavigate();
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const isValidEmail = (email) => {
+        // Email regex pattern: firstname.lastname@ashesi.edu.gh
+        const emailRegex = /^[a-zA-Z]+[.][a-zA-Z]+@ashesi\.edu\.gh$/;
+        return emailRegex.test(email);
+    }
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        // if (!isValidEmail(email)) {
+        //     // Display an error message or handle invalid email format
+        //     console.error('Invalid email format');
+        //     return;
+        // }
+
+        // login logic, api call, etc, etc, idk...
+
+        // assuming successful login, navigate to desired route (for now, courses)
+        const isSuccess = true; // replace with actual success check
+        if (isSuccess) {
+            navigate('/user/courses');
+        }
+    }
+
     return (
         <div className="login-container">
             <div className="login-top">
@@ -17,14 +43,14 @@ function Login() {
                                 </div>
                             </div>
                             <div className="login-body">
-                                <form className="login_form" action="" method="">
+                                <form className="login_form" onSubmit={handleLogin}>
                                     <div className="form-control">
                                         <label className="form-label">Email</label>
-                                        <input className="form-input"></input>
+                                        <input className="form-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                                     </div>
                                     <div className="form-control">
                                         <label className="form-label">Password</label>
-                                        <input className="form-input"></input>
+                                        <input className="form-input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                                     </div>
                                     <div className="login-actions">
                                         <div className="login-timeout">
@@ -34,8 +60,7 @@ function Login() {
                                                 <a>Forgot Password?</a>
                                             </div>
                                             <div className="login-forgot">
-                                                {/* <a onClick={switchToSignUp}>Don't have an account?</a> */}
-                                                <a onClick={( ) => navigate('signup')}>Don't have an account?</a>
+                                                <a onClick={( ) =>  navigate('/signup')}>Don't have an account?</a>
                                             </div>
                                         </div>
                                         <div className="form-login-button">

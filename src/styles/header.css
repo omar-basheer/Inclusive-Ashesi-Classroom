@@ -68,6 +68,7 @@
     color: #ffffff;
     padding: 0.25rem 0;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .menu-icon-container{

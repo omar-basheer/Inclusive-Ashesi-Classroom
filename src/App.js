@@ -7,23 +7,19 @@ import SignUp from './pages/auth/SignUp';
 import Courses from './pages/Courses';
 import Screening from './pages/Screening';
 import Layout from './Layout/Layout';
+import SysPref from './pages/SysPref';
 
 function App() {
-    const [isLoggedIn, setLoggedIn] = useState(true);
-    const navigate = useNavigate();
-
-    const handleLogin = () => {
-        setLoggedIn(true)
-    }
 
     return (
         <div>
             <Routes>
-                <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/user" element={<Layout />}>
                     <Route path="/user/courses" element={<Courses />} />
                     <Route path="/user/screening" element={<Screening />} />
+                    <Route path="/user/syspref" element={<SysPref />} />
                 </Route>
             </Routes>
         </div>
