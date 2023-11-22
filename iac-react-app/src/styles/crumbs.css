@@ -25,7 +25,7 @@
     box-sizing: border-box;
     
 }
-.bread-crumbs{
+.breadcrumbs{
     background-color: #fff;
 }
 
@@ -33,6 +33,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
 }
 
 .crumb-course-link{
@@ -42,6 +43,15 @@
     vertical-align: top;
     font-size: 1.0rem;
 }
+
+.crumb-course{
+    margin-right: 8px;
+    font-weight: 500;
+}
+
+.crumb-separator {
+    margin: 0 4px; /* Adjust spacing around the separator */
+  }
 
 .right-of-crumbs{
     display: flex;
