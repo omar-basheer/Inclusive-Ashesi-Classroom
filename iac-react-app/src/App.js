@@ -8,18 +8,20 @@ import Courses from './pages/Courses';
 import Screening from './pages/Screening';
 import Layout from './Layout/Layout';
 import SysPref from './pages/SysPref';
+import Dashboard from './pages/Dashboard';
 
 function App() {
 
     return (
         <div>
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/user" element={<Layout />}>
-                    <Route path="/user/courses" element={<Courses />} />
-                    <Route path="/user/screening" element={<Screening />} />
-                    <Route path="/user/syspref" element={<SysPref />} />
+                <Route path="/Login" element={<Login />} />
+                <Route path="/Signup" element={<SignUp />} />
+                <Route path="/" element={<Layout />}>
+                    <Route path="/Dashboard" element={<Dashboard />} />
+                    <Route path="/Dashboard/Courses" element={<Courses />} />
+                    <Route path="/Screening" element={<Screening />} />
+                    <Route path="/Preferences" element={<SysPref />} />
                 </Route>
             </Routes>
         </div>
