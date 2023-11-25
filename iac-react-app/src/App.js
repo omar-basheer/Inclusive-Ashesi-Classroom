@@ -2,29 +2,33 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { AuthProvider } from './pages/auth/AuthContext';
 import Login from '../src/pages/auth/Login';
 import SignUp from './pages/auth/SignUp';
-import Courses from './pages/Courses';
+import Course from './pages/Course';
 import Screening from './pages/Screening';
 import Layout from './Layout/Layout';
 import SysPref from './pages/SysPref';
 import Dashboard from './pages/Dashboard';
+import ProtectedRoute from './pages/auth/ProtectedRoute';
 
 function App() {
+    const [authToken, setAuthToken] = useState(null)
 
     return (
-        <div>
+        <AuthProvider>
             <Routes>
-                <Route path="/Login" element={<Login />} />
+                <Route index element={<Login />} />
+                <Route path='/Login' element={<Login />} />
                 <Route path="/Signup" element={<SignUp />} />
-                <Route path="/" element={<Layout />}>
-                    <Route path="/Dashboard" element={<Dashboard />} />
-                    <Route path="/Dashboard/Courses" element={<Courses />} />
-                    <Route path="/Screening" element={<Screening />} />
-                    <Route path="/Preferences" element={<SysPref />} />
+                <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+                    <Route path="/Dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                    <Route path="/Dashboard/23_SEM1_CS415_B" element={<ProtectedRoute><Course /></ProtectedRoute>} />
+                    <Route path="/Screening" element={<ProtectedRoute><Screening /></ProtectedRoute>} />
+                    <Route path="/Preferences" element={<ProtectedRoute><SysPref /></ProtectedRoute>} />
                 </Route>
             </Routes>
-        </div>
+        </AuthProvider>
     );
 }
 

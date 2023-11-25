@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './auth/AuthContext';
 import '../styles/global.css'
 import '../styles/courses.css'
 import Sidemenu from "../components/Sidemenu";
@@ -6,7 +8,17 @@ import ToDo from "../components/ToDo";
 import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
 
-function Courses() {
+function Course() {
+    // const { token } = useAuth();
+    // const navigate = useNavigate();
+    // useEffect(() => {
+    //     console.log('Token in useEffect:', token);
+    //     // Check if token is not present, then navigate to the login page
+    //     if (!token) {
+    //         console.log('no-token')
+    //       navigate('/Login');
+    //     }
+    //   }, [token, navigate]);
     const Title = "[23_SEM1_CS415_B] - Software Engineering"
     const richContent = `                   
     <h3><strong>Introduction:</strong></h3>
@@ -46,4 +58,4 @@ function Courses() {
     )
 }
 
-export default Courses
+export default Course

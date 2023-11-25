@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext'
+import {fakeAuth} from '../../services/user_auth'
 import '../../styles/auth.css'
 
 function Login() {
     const navigate = useNavigate();
+    const { login } = useAuth()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -23,11 +26,16 @@ function Login() {
         // }
 
         // login logic, api call, etc, etc, idk...
+        const token = await fakeAuth()
 
         // assuming successful login, navigate to desired route (for now, courses)
-        const isSuccess = true; // replace with actual success check
-        if (isSuccess) {
-            navigate('/user/courses');
+        if (token) {
+            login(token);
+            console.log(token)
+            navigate('/Dashboard/Courses');
+        }
+        else {
+            navigate('/Login');
         }
     }
 
@@ -39,7 +47,7 @@ function Login() {
                         <div className="inner-content">
                             <div className="header">
                                 <div className="login-header-logo">
-                                <img alt="Ashesi University" src="https://instructure-uploads-eu.s3.eu-west-1.amazonaws.com/account_153630000000000001/attachments/659/ashesiLogo%20long.png" ></img>
+                                    <img alt="Ashesi University" src="https://instructure-uploads-eu.s3.eu-west-1.amazonaws.com/account_153630000000000001/attachments/659/ashesiLogo%20long.png" ></img>
                                 </div>
                             </div>
                             <div className="login-body">
@@ -60,7 +68,7 @@ function Login() {
                                                 <a>Forgot Password?</a>
                                             </div>
                                             <div className="login-forgot">
-                                                <a onClick={( ) =>  navigate('/signup')}>Don't have an account?</a>
+                                                <a onClick={() => navigate('/Signup')}>Don't have an account?</a>
                                             </div>
                                         </div>
                                         <div className="form-login-button">

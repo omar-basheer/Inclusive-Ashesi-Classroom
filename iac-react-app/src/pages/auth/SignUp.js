@@ -24,7 +24,7 @@ function SignUp() {
         // assuming successful login, navigate to desired route (for now, courses)
         const isSuccess = true; // replace with actual success check
         if (isSuccess) {
-            navigate('/user/screening');
+            navigate('/Screening');
         }
     }
     return (
@@ -63,7 +63,7 @@ function SignUp() {
                                     <div className="login-actions">
                                         <div className="login-timeout">
                                             <div className="login-forgot">
-                                                <a onClick={( ) => navigate('/login')}>Already have an account?</a>
+                                                <a onClick={( ) => navigate('/Login')}>Already have an account?</a>
                                             </div>
                                         </div>
                                         <div className="form-login-button">
