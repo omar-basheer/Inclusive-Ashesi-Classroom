@@ -23,7 +23,7 @@ function App() {
                 <Route path="/Signup" element={<SignUp />} />
                 <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
                     <Route path="/Dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                    <Route path="/Dashboard/23_SEM1_CS415_B" element={<ProtectedRoute><Course /></ProtectedRoute>} />
+                    <Route path="/Dashboard/:courseID" element={<ProtectedRoute><Course /></ProtectedRoute>} />
                     <Route path="/Screening" element={<ProtectedRoute><Screening /></ProtectedRoute>} />
                     <Route path="/Preferences" element={<ProtectedRoute><SysPref /></ProtectedRoute>} />
                 </Route>

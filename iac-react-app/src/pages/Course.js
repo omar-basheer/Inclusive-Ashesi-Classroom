@@ -1,5 +1,7 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types'; 
 import { useAuth } from './auth/AuthContext';
 import '../styles/global.css'
 import '../styles/courses.css'
@@ -9,17 +11,27 @@ import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
 
 function Course() {
-    // const { token } = useAuth();
-    // const navigate = useNavigate();
-    // useEffect(() => {
-    //     console.log('Token in useEffect:', token);
-    //     // Check if token is not present, then navigate to the login page
-    //     if (!token) {
-    //         console.log('no-token')
-    //       navigate('/Login');
-    //     }
-    //   }, [token, navigate]);
-    const Title = "[23_SEM1_CS415_B] - Software Engineering"
+    const { courseID } = useParams()
+    console.log(courseID)
+    const [courseTitle, setCourseTitle] = useState("")
+    const fetchCourseData =  (courseId) => {
+        const course = courses.find(course => course.id === courseID);
+        if (course) {
+          setCourseTitle(`[${course.id}] - ${course.title}`);
+        }
+      };
+    
+      const courses = [
+        { id: '23_SEM1_CS353_A', title: 'Introduction to AI Robotics' },
+        { id: '23_SEM1_CS415_B', title: 'Software Engineering' },
+        { id: '23_SEM1_CS456_A', title: 'Algorithm Design and Analysis' },
+        { id: '23_SEM1_SOAN325_D', title: 'Research Methods' },
+    ];
+    
+      useEffect(() => {
+        fetchCourseData(courseID);
+      }, [courseID]);
+
     const richContent = `                   
     <h3><strong>Introduction:</strong></h3>
     <p><span className="pstyle">Hi Students.</span></p>
@@ -36,6 +48,8 @@ function Course() {
     <p><span className="pstyle"><strong><em>Ashesi’s mission is to educate a new generation of ethical entrepreneurial leaders in Africa and to cultivate in students, the critical thinking skills, concern for others and the courage it will take to transform a continent</em></strong>.&nbsp;</span></p>
     <p><span className="pstyle">We will be using artificial intelligence (i.e., ChatGPT and Bard) to assist the learning process, but it should not be used to get assistance for any class assignments, lab exercises, quizzes, projects and examinations, unless otherwise stated. In short, observe the&nbsp;<strong>honour code</strong>&nbsp;and keep it holy.&nbsp;</span></p>
     <p><span className="pstyle">My warmest wishes and success in this course!</span></p>`
+    const [homeContent, setHomeContent] = useState(richContent)
+
     return (
         <div className="iac-app">
             <div className="iac-layout-columns">
@@ -44,8 +58,8 @@ function Course() {
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">
                             <PageContent
-                                contentTitle={Title}
-                                richContent={richContent}
+                                contentTitle={courseTitle}
+                                richContent={homeContent}
                             />
                         </div>
                     </div>
