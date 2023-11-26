@@ -32,7 +32,7 @@ function Login() {
         if (token) {
             login(token);
             console.log(token)
-            navigate('/Dashboard/Courses');
+            navigate('/Dashboard');
         }
         else {
             navigate('/Login');
