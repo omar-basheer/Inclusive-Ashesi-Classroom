@@ -16,7 +16,7 @@
     bottom: 0px;
     inset-inline: 0px auto;
     width: 26em;
-    /* transition: background 0.4s ease 2s, transform 0.2s ease 0s; */
+    transition:  0.4s ease 2s, transform 0.2s ease 0s;
 }
 
 .tray-content{
@@ -146,12 +146,11 @@ hr{
     box-sizing: border-box;
     font-weight: 400;
     transition: outline-color 0.2s ease 0s;
-    /* vertical-align: baseline; */
-    /* outline: transparent solid 0.115rem; */
     border-radius: 0.125rem;
     outline-offset: 0.25rem;
     cursor: pointer;
-    color: rgb(8, 125, 184);
+    /* color: rgb(8, 125, 184); */
+    color: #923D41;
     text-decoration: underline 1px;
     text-underline-offset: 2px;
 }

@@ -65,6 +65,7 @@
     min-width: 0;
     flex: 1;
     padding: 0 6px 0 9px;
+    /* display: inline-block; */
 }
 .ToDoSidebarItem__Title{
     margin-bottom: 3px;

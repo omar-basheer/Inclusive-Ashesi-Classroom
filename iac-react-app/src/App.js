@@ -8,9 +8,11 @@ import SignUp from './pages/auth/SignUp';
 import Course from './pages/Course';
 import Screening from './pages/Screening';
 import Layout from './Layout/Layout';
-import SysPref from './pages/SysPref';
+import Preferences from './pages/Preferences';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './pages/auth/ProtectedRoute';
+import Modules from './pages/Modules';
+import Module from './pages/Module';
 
 function App() {
     const [authToken, setAuthToken] = useState(null)
@@ -24,8 +26,11 @@ function App() {
                 <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
                     <Route path="/Dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                     <Route path="/Dashboard/:courseID" element={<ProtectedRoute><Course /></ProtectedRoute>} />
+                    <Route path="/Dashboard/:courseID/Modules" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
+                    <Route path="/Dashboard/:courseID/Modules/Module" element={<ProtectedRoute><Module /></ProtectedRoute>} />
                     <Route path="/Screening" element={<ProtectedRoute><Screening /></ProtectedRoute>} />
-                    <Route path="/Preferences" element={<ProtectedRoute><SysPref /></ProtectedRoute>} />
+                    <Route path="/Preferences" element={<ProtectedRoute><Preferences /></ProtectedRoute>} />
+                    
                 </Route>
             </Routes>
         </AuthProvider>

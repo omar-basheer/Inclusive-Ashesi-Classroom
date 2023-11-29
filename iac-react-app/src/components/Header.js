@@ -9,9 +9,13 @@ function Header() {
     const handleIconClick = () => {
         setSideMenuOpen(!isSideMenuOpen)
     }
+    
+    const closeCourseTray = () => {
+        setSideMenuOpen(false);
+    }
     return (
         <div>
-            {isSideMenuOpen && ( <CourseTray />)}
+            {isSideMenuOpen && ( <CourseTray  closeTray={closeCourseTray} />)}
             <div className='iac-app-header'>
                 <div className='main-nav'>
                     <div className='logo-container'>

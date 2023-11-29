@@ -37,11 +37,12 @@
 }
 
 .crumb-course-link{
-    color: #2d3b45;
+    color: #6D6E70;
     display: inline-block;
     white-space: nowrap;
     vertical-align: top;
-    font-size: 1.0rem;
+    font-size: 1.0em;
+    font-weight: 400;
 }
 
 .crumb-course{
