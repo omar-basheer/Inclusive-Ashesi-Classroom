@@ -5,13 +5,17 @@ import "../styles/global.css"
 import "../styles/course_tray.css"
 
 
-function CourseTray() {
+function CourseTray({ closeTray }) {
     const courses = [
         { id: '23_SEM1_CS353_A', title: 'Introduction to AI Robotics' },
         { id: '23_SEM1_CS415_B', title: 'Software Engineering' },
         { id: '23_SEM1_CS456_A', title: 'Algorithm Design and Analysis' },
         { id: '23_SEM1_SOAN325_D', title: 'Research Methods' },
     ];
+
+    const handleCourseLinkClick = () => {
+        closeTray();
+    }
     return (
         <div className='navtray-portal'>
             <span className='tray'>
@@ -45,7 +49,7 @@ function CourseTray() {
                                     <li className='list-item'>
                                         <ul className='block-list'>
                                             {courses.map(course => (
-                                                <li className='list-item' key={course.id}>
+                                                <li className='list-item' key={course.id} onClick={handleCourseLinkClick}>
                                                     {/* <a href={`/Dashboard/${course.id}`} className='view-link'>{"["+course.id+"]" + " - " + course.title}</a> */}
                                                     <Link to={`/Dashboard/${course.id}`} className='view-link'>{`[${course.id}] - ${course.title}`}</Link>
                                                     <div className='subtext'>23-24-SEM1</div>
