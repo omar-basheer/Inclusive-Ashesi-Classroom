@@ -1,0 +1,19 @@
+.header-bar{
+    border-bottom: 1px solid #c7cdd1;
+    background-color: #fff;
+    min-height: 33px;
+    padding-bottom: 12px;
+}
+
+.item-group-container{
+    background: #fff;
+    padding-bottom: 72px;
+    border: 0;
+}
+
+.context-modules{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 20px;
+}
