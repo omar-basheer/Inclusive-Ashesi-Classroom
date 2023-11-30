@@ -28,7 +28,7 @@ function Dashboard() {
         <div className="iac-app">
             <div className="iac-layout-columns">
                 <div className="iac-main-app-content">
-                    <Sidemenu />
+                    {/* <Sidemenu /> */}
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">
                             <PageContent
@@ -37,9 +37,9 @@ function Dashboard() {
                             />
                         </div>
                     </div>
-                    <div className="iac-main-right-side-wrapper">
+                    {/* <div className="iac-main-right-side-wrapper">
                         <RightSide />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

@@ -54,7 +54,9 @@ function Course() {
         <div className="iac-app">
             <div className="iac-layout-columns">
                 <div className="iac-main-app-content">
-                    <Sidemenu />
+                    <Sidemenu 
+                    courseID={courseID}
+                    />
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">
                             <PageContent
