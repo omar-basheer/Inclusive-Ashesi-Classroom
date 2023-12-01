@@ -1,9 +1,9 @@
 .toggle-and-crumbs{
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #c7cdd1;
+    border-bottom: 1px solid #c7cdd1ac;
     margin: 0 24px;
-    min-height: 4.5rem;
+    min-height: 4.1rem;
     box-sizing: border-box;
 }
 
@@ -37,12 +37,13 @@
 }
 
 .crumb-course-link{
-    color: #6D6E70;
+    color: #923D41;
     display: inline-block;
     white-space: nowrap;
     vertical-align: top;
     font-size: 1.0em;
     font-weight: 400;
+    text-decoration: none;
 }
 
 .crumb-course{
@@ -51,7 +52,7 @@
 }
 
 .crumb-separator {
-    margin: 0 4px; /* Adjust spacing around the separator */
+    margin: 0 4px; 
   }
 
 .right-of-crumbs{
