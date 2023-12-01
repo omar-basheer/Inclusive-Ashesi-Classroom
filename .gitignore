@@ -11,6 +11,9 @@
 # production
 /build
 
+# Virtual environment
+djangoenv/
+
 # misc
 .DS_Store
 .env.local

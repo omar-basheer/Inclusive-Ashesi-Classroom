@@ -4,14 +4,14 @@
     min-width: auto;
     margin-bottom: 0;
     border: 0;
-    margin-top: 12px;
+    margin-top: 15px;
     padding: 7px;
 }
 
 .c-header{
     margin-top: 12px;
     background-color: #f5f5f5;
-    border: 1px solid #c7cdd1;
+    border: 1px solid #c7cdd1d0;
     padding: 10px 6px;
     position: relative;
     display: flex;
@@ -68,7 +68,7 @@
     background: #fff;
     padding: 10px 6px 10px 8px;
     box-sizing: border-box;
-    border: 1px solid #c7cdd1;
+    border: 1px solid #c7cdd197;
     border-top: none;
 }
 
