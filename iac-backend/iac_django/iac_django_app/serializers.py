@@ -1,10 +1,18 @@
 from rest_framework import serializers
+from django.contrib.auth.hashers import make_password
+from rest_framework.authtoken.serializers import AuthTokenSerializer
 from .models import Student, Course, Enrollment, Module, File
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Student
-        fields = ['studentid', 'first_name', 'last_name', 'email', 'password']
+        fields = ['student_id', 'first_name', 'last_name', 'email', 'password']
+
+    def create(self, validated_data):
+        # Hash the password before saving the user
+        validated_data['password'] = make_password(validated_data['password'])
+        return super().create(validated_data)
+
 
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
