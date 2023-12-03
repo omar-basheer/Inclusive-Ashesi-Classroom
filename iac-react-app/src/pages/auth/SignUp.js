@@ -1,32 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import {fakeAuth, handleSignUp} from '../../services/user_auth'
 import '../../styles/auth.css'
 
 function SignUp() {
     const navigate = useNavigate();
+    const [student_id, setStudentId] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleSignUp = async (e) => {
-        e.preventDefault();
-
-        // Basic form validation
-        // if (!firstName || !lastName || !email || !password || !confirmPassword) {
-        //     // Display an error message or handle the missing fields
-        //     console.error('All fields are required');
-        //     return;
-        // }
-        // login logic, api call, etc, etc, idk...
-
-        // assuming successful login, navigate to desired route (for now, courses)
-        const isSuccess = true; // replace with actual success check
-        if (isSuccess) {
-            navigate('/Screening');
-        }
-    }
     return (
         <div className="login-container">
             <div className="login-top">
@@ -40,6 +25,10 @@ function SignUp() {
                             </div>
                             <div className="login-body">
                                 <form className="login_form" action="" method="">
+                                    <div className="form-control">
+                                        <label className="form-label">Student ID</label>
+                                        <input className="form-input" type="text" value={student_id} onChange={(e) => setStudentId(e.target.value)} />
+                                    </div>
                                     <div className="form-control">
                                         <label className="form-label">First Name</label>
                                         <input className="form-input" type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
@@ -67,7 +56,16 @@ function SignUp() {
                                             </div>
                                         </div>
                                         <div className="form-login-button">
-                                            <input type="submit" className="login-button" value="Sign Up" onClick={handleSignUp}></input>
+                                            <input type="submit" className="login-button" value="Sign Up" onClick={(e) => handleSignUp(
+                                                e,
+                                                student_id,
+                                                firstName,
+                                                lastName,
+                                                email,
+                                                password,
+                                                confirmPassword,
+                                                navigate
+                                                )}></input>
                                         </div>
                                     </div>
                                 </form>

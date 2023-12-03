@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext'
-import {fakeAuth} from '../../services/user_auth'
+import {fakeAuth, handleLogin} from '../../services/user_auth'
 import '../../styles/auth.css'
 
 function Login() {
@@ -9,35 +9,6 @@ function Login() {
     const { login } = useAuth()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    const isValidEmail = (email) => {
-        // Email regex pattern: firstname.lastname@ashesi.edu.gh
-        const emailRegex = /^[a-zA-Z]+[.][a-zA-Z]+@ashesi\.edu\.gh$/;
-        return emailRegex.test(email);
-    }
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-
-        // if (!isValidEmail(email)) {
-        //     // Display an error message or handle invalid email format
-        //     console.error('Invalid email format');
-        //     return;
-        // }
-
-        // login logic, api call, etc, etc, idk...
-        const token = await fakeAuth()
-
-        // assuming successful login, navigate to desired route (for now, courses)
-        if (token) {
-            login(token);
-            console.log(token)
-            navigate('/Dashboard');
-        }
-        else {
-            navigate('/Login');
-        }
-    }
 
     return (
         <div className="login-container">
@@ -51,7 +22,7 @@ function Login() {
                                 </div>
                             </div>
                             <div className="login-body">
-                                <form className="login_form" onSubmit={handleLogin}>
+                                <form className="login_form" onSubmit={(e) => handleLogin(e, email, password,login, navigate)}>
                                     <div className="form-control">
                                         <label className="form-label">Email</label>
                                         <input className="form-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
