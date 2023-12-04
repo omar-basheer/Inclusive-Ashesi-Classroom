@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../styles/global.css"
 import "../styles/header.css"
 import CourseTray from './CourseTray';
+
 
 function Header() {
     const [isSideMenuOpen, setSideMenuOpen] = useState(false)
@@ -9,13 +10,13 @@ function Header() {
     const handleIconClick = () => {
         setSideMenuOpen(!isSideMenuOpen)
     }
-    
+
     const closeCourseTray = () => {
         setSideMenuOpen(false);
     }
     return (
         <div>
-            {isSideMenuOpen && ( <CourseTray  closeTray={closeCourseTray} />)}
+            {isSideMenuOpen && (<CourseTray closeTray={closeCourseTray} />)}
             <div className='iac-app-header'>
                 <div className='main-nav'>
                     <div className='logo-container'>

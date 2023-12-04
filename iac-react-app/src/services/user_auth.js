@@ -78,10 +78,16 @@ export const handleSignUp = async (e, student_id, firstName, lastName, email, pa
         });
 
         const data = await response.json();
+        console.log(data.data)
 
-        if (response.ok && data.success) {
-            // Registration was successful
-            navigate('/Screening');
+        if (response.ok) {
+            if (response.status == 201){
+                navigate('/Screening');
+            }
+            else{
+                console.error('Unexpected status code:', response.status);
+            }
+            
         } else {
             // Display an error message or handle the failure
             console.error('Registration failed:', data.message);
