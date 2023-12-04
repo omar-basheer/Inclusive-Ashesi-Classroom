@@ -8,21 +8,11 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 from .models import Student, Course, Module, File, Enrollment
 from django.contrib.auth import get_user_model
-from .serializers import StudentSerializer, CourseSerializer, EnrollmentSerializer, ModuleSerializer, FileSerializer
+from .serializers import StudentSerializer, CourseSerializer, EnrollmentSerializer, ModuleSerializer, FileSerializer, CourseLinksSerializer
 
-
-# class StudentView(APIView):
-
-#     def post(self, request, format=None):
-#         action = request.data.get('action')
-#         if action == 'signup':
-#             return self.signup(request)
-#         elif action == 'login':
-#             return self.login(request)
-#         else:
-#             return Response({'error': 'Invalid action'}, status=status.HTTP_400_BAD_REQUEST)
-
-
+"""
+Classes for Student signup and login
+"""
 class RegisterStudentView(APIView):
     permission_classes = [AllowAny]
 
@@ -45,9 +35,6 @@ class LoginStudentView(APIView):
         print(f"Attempting login with email: {email}, password: {password}")
         # Authenticate the user
         user = authenticate(request, username=email, password=password)
-        # if user.is_superuser:
-        #     user.is_staff = True
-        # user.save()
         print(f"Authentication result: {user}")
         if user:
             login(request, user)
@@ -68,3 +55,41 @@ class DeleteStudentView(APIView):
 
         student.delete()
         return Response({"message": f"Student with id {student_id} deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+
+
+"""
+Classes for Student course retrieval
+"""
+
+class GetStudentCoursesView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, student_id):
+        try:
+            student = Student.objects.get(student_id=student_id)
+        except Student.DoesNotExist:
+            return Response({"error": f"Student with ID {student_id} not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        enrollments = Enrollment.objects.filter(student=student)
+        courses = [enrollment.course for enrollment in enrollments]
+        serializer = CourseLinksSerializer(courses, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class GetCourseDetailsView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, course_id):
+        try:
+            course = Course.objects.get(course_id=course_id)
+        except Course.DoesNotExist:
+            return Response({"error": f"Course with ID {course_id} not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = CourseSerializer(course)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+        

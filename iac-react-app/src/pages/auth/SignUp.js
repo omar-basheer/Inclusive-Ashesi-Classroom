@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import {fakeAuth, handleSignUp} from '../../services/user_auth'
+import { fakeAuth, handleSignUp } from '../../services/user_auth'
 import '../../styles/auth.css'
 
 function SignUp() {
@@ -20,7 +20,7 @@ function SignUp() {
                         <div className="inner-content">
                             <div className="header">
                                 <div className="login-header-logo">
-                                <img alt="Ashesi University" src="https://instructure-uploads-eu.s3.eu-west-1.amazonaws.com/account_153630000000000001/attachments/659/ashesiLogo%20long.png" ></img>
+                                    <img alt="Ashesi University" src="https://instructure-uploads-eu.s3.eu-west-1.amazonaws.com/account_153630000000000001/attachments/659/ashesiLogo%20long.png" ></img>
                                 </div>
                             </div>
                             <div className="login-body">
@@ -52,7 +52,7 @@ function SignUp() {
                                     <div className="login-actions">
                                         <div className="login-timeout">
                                             <div className="login-forgot">
-                                                <a onClick={( ) => navigate('/Login')}>Already have an account?</a>
+                                                <a onClick={() => navigate('/Login')}>Already have an account?</a>
                                             </div>
                                         </div>
                                         <div className="form-login-button">
@@ -65,7 +65,7 @@ function SignUp() {
                                                 password,
                                                 confirmPassword,
                                                 navigate
-                                                )}></input>
+                                            )}></input>
                                         </div>
                                     </div>
                                 </form>

@@ -149,3 +149,5 @@ REST_FRAMEWORK = {
     # ... other settings ...
 }
 
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+

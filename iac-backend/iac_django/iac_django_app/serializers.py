@@ -19,6 +19,11 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         fields = ['course_id', 'course_name', 'course_description']
 
+class CourseLinksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['course_id', 'course_name']
+
 class EnrollmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollment
@@ -33,3 +38,4 @@ class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
         fields = ['file_id', 'module', 'name', 'file_type', 'file']
+        read_only_fields = ['file']

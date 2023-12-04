@@ -34,9 +34,6 @@ class Student(AbstractBaseUser, PermissionsMixin):
     objects = StudentManager()
 
 
-# class CustomToken(Token):
-#     student = models.OneToOneField(Student, on_delete=models.CASCADE)
-
 class Course(models.Model):
     course_id = models.CharField(max_length=20, primary_key=True)
     course_name = models.CharField(max_length=100)
