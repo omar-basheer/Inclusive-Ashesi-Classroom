@@ -36,10 +36,23 @@ class LoginStudentView(APIView):
         # Authenticate the user
         user = authenticate(request, username=email, password=password)
         print(f"Authentication result: {user}")
+
         if user:
             login(request, user)
             token, created = Token.objects.get_or_create(user=user)
-            return Response({'token': token.key}, status=status.HTTP_200_OK)
+
+            # Include additional information in the response
+            response_data = {
+                'token': token.key,
+                'user': {
+                    'student_id': user.student_id,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'email': user.email
+                }
+            }
+
+            return Response(response_data, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         
@@ -92,4 +105,29 @@ class GetCourseDetailsView(APIView):
 
 
 
+class GetModulesView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, course_id):
+        try:
+            # Get all modules for the specified course
+            modules = Module.objects.filter(course__course_id=course_id).order_by('week')
+            module_data = []
+
+            for module in modules:
+                # Serialize the module data
+                module_serializer = ModuleSerializer(module).data
+
+                # Get all files associated with the module
+                files = File.objects.filter(module=module)
+                file_data = FileSerializer(files, many=True).data
+
+                # Add file data to the module data
+                module_serializer['files'] = file_data
+                module_data.append(module_serializer)
+
+            return Response(module_data, status=status.HTTP_200_OK)
+
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         

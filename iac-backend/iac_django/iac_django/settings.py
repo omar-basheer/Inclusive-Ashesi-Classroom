@@ -36,6 +36,9 @@ ALLOWED_HOSTS = [
     "*"
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # Application definition
 
@@ -55,12 +58,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware"
+    "django.middleware.clickjacking.XFrameOptionsMiddleware"
+    
 ]
 
 ROOT_URLCONF = "iac_django.urls"
@@ -139,8 +143,24 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = 'iac_django_app.Student'
 
+# CORS_ORIGIN_WHITELIST = [
+#     'http://localhost:3000',
+# ]
+
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = [
+        'accept',
+        'accept-encoding',
+        'authorization',
+        'content-type',
+        'dnt',
+        'origin',
+        'user-agent',
+        'x-csrftoken',
+        'x-requested-with',
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -149,5 +169,5 @@ REST_FRAMEWORK = {
     # ... other settings ...
 }
 
-DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+# DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 

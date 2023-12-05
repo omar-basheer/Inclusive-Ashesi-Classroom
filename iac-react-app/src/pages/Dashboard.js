@@ -5,9 +5,11 @@ import Sidemenu from "../components/Sidemenu";
 import ToDo from "../components/ToDo";
 import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
+import { useAuth } from "./auth/AuthContext";
+
 
 function Dashboard() {
-    const Title = "Omar's Dashboard"
+    const {userInfo} = useAuth()
     const richContent = `                   
     <h3><strong>Introduction:</strong></h3>
     <p><span className="pstyle">Hi Students.</span></p>
@@ -28,12 +30,11 @@ function Dashboard() {
         <div className="iac-app">
             <div className="iac-layout-columns">
                 <div className="iac-main-app-content">
-                    {/* <Sidemenu /> */}
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">
                             <PageContent
-                                contentTitle={Title}
-                                richContent={richContent}
+                                contentTitle={userInfo ? `${userInfo.first_name} ${userInfo.last_name}'s dashboard` : 'Loading...'}
+                                // richContent={richContent}
                             />
                         </div>
                     </div>
