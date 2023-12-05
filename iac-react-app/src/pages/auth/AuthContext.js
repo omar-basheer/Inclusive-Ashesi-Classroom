@@ -9,17 +9,20 @@ const useAuth = () => {
 
 function AuthProvider({children}) {
     const [authToken, setAuthToken] = useState(null)
+    const [userInfo, setUserInfo] = useState(null)
 
-    const login = (newToken) => {
+    const login = (newToken, user) => {
         setAuthToken(newToken);
+        setUserInfo(user)
       };
     
       const logout = () => {
         setAuthToken(null);
+        setUserInfo(null)
       };
       
     return(
-        <AuthContext.Provider value={{authToken, login, logout}}>
+        <AuthContext.Provider value={{authToken, userInfo, login, logout}}>
             {children}
         </AuthContext.Provider>
     )

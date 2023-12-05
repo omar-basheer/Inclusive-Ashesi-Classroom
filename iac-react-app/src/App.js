@@ -30,7 +30,6 @@ function App() {
                     <Route path="/Dashboard/:courseID/Modules/Module" element={<ProtectedRoute><TextModule /></ProtectedRoute>} />
                     <Route path="/Screening" element={<ProtectedRoute><Screening /></ProtectedRoute>} />
                     <Route path="/Preferences" element={<ProtectedRoute><Preferences /></ProtectedRoute>} />
-                    
                 </Route>
             </Routes>
         </AuthProvider>

@@ -3,7 +3,7 @@ import '../styles/global.css'
 import "../styles/collapsible.css"
 
 
-function Collapsible() {
+function Collapsible({ moduleDescription, files }) {
     return (
         <div className='condensed-module'>
             <div className='c-header'>
@@ -13,11 +13,38 @@ function Collapsible() {
                             <path d="M0 0L20 20L40 0H0Z" fill="#666666" />
                         </svg>
                     </i>
-                    <span className='name'>Week 1 | Add Topic / Chapter Here</span>
+                    <span className='name'>{moduleDescription}</span>
                 </span>
             </div>
             <div className='module-content'>
-                <ul className='list-items'>
+                {files.map((file, index) => (
+                    <ul className='list-items' key={index}>
+                        <li>
+                            <div className='item-row'>
+                                <span>
+                                    <span className='type-icon'>
+                                        <i className='icon'>
+                                            <svg width="17" height="17" viewBox="0 0 88 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M88 0H0V64H28V72H60V64H87.96L88 0ZM80 56H8V8H80V56ZM60 32L32 48V16L60 32Z" fill="#6D6E70" fillOpacity="0.68" />
+                                            </svg>
+                                        </i>
+                                    </span>
+                                </span>
+                                <div className='item-info'>
+                                    <div className='item-title'>
+                                        <span className='item-name'>
+                                            <a className='item'>{file.name}</a>
+                                        </span>
+                                    </div>
+                                    <div className='item-details'>
+                                        <div className='due-date-display'>30 Aug</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                ))}
+                {/* <ul className='list-items'>
                     <li>
                         <div className='item-row'>
                             <span >
@@ -60,7 +87,7 @@ function Collapsible() {
                                 <div className='item-title'>
                                     <span className='item-name'>
                                         <a className='item'>
-                                        Introduction to Inductive and Deductive Reasoning (Includes Activity)
+                                            Introduction to Inductive and Deductive Reasoning (Includes Activity)
                                         </a>
                                     </span>
                                 </div>
@@ -70,7 +97,7 @@ function Collapsible() {
                             </div>
                         </div>
                     </li>
-                </ul>
+                </ul> */}
                 <div className='footer'></div>
             </div>
         </div>

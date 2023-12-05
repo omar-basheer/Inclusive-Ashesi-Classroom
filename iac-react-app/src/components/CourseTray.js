@@ -4,15 +4,17 @@ import PropTypes from 'prop-types';
 import { fetchCourseData } from '../services/user_courses';
 import "../styles/global.css"
 import "../styles/course_tray.css"
+import { useAuth } from '../pages/auth/AuthContext';
 
 
 function CourseTray({closeTray }) {
     const [courses, setCourses] = useState([]);
+    const {userInfo} = useAuth()
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/students/get/54042024/');
+                const response = await fetch(`http://localhost:8080/api/students/courses/${userInfo.student_id}/`)
                 const data = await response.json();
                 setCourses(data);
             } catch (error) {

@@ -8,9 +8,11 @@ import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
 import { useState } from 'react';
 import AutoAidOption from "../components/AutoAidOption";
+import { useAuth } from "./auth/AuthContext";
 
 function Preferences() {
     const Title = "System Preferences"
+    const {userInfo} = useAuth()
 
     const [expandedState, setExpandedState] = useState(new Array(4).fill(false));
     const [arrowDirection, setArrowDirection] = useState(new Array(4).fill("down"));
@@ -41,7 +43,7 @@ function Preferences() {
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">
                             <a className="avatar-profile"></a>
-                            <h1 className="user-profile">Omar,Basheer's Settings</h1>
+                            <h1 className="user-profile">{userInfo ? `${userInfo.first_name}, ${userInfo.last_name}'s Settings` : 'Loading...'}</h1>
                             <form className="profile-form">
                                 {/* hard coded user settings */}
                                 <table className="profile-table">
@@ -50,7 +52,7 @@ function Preferences() {
                                             <label className="profile-table-info">Full name:</label>
                                         </th>
                                         <td className="table-td">
-                                            <span >Omar Basheer</span>
+                                            <span >{userInfo ? `${userInfo.first_name} ${userInfo.last_name}` : 'Loading...'}</span>
                                             <span className="profile-table-description">
                                                 <br></br>
                                                 This name will be used for grading
