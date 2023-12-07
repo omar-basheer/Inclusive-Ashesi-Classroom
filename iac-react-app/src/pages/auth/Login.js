@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './AuthContext'
-import {fakeAuth, handleLogin} from '../../services/user_auth'
+import { AuthContext, useAuth } from './AuthProvider'
+import { fakeAuth, handleLogin } from '../../services/user_auth'
 import '../../styles/auth.css'
 
 function Login() {
     const navigate = useNavigate();
-    const { login } = useAuth()
+    const { login } = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -22,7 +22,7 @@ function Login() {
                                 </div>
                             </div>
                             <div className="login-body">
-                                <form className="login_form" onSubmit={(e) => handleLogin(e, email, password,login, navigate)}>
+                                <form className="login_form" onSubmit={(e) => handleLogin(e, email, password, login, navigate)}>
                                     <div className="form-control">
                                         <label className="form-label">Email</label>
                                         <input className="form-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
@@ -33,7 +33,7 @@ function Login() {
                                     </div>
                                     <div className="login-actions">
                                         <div className="login-timeout">
-                                            <input className="check" type="checkbox" value={1} name="check"></input>
+                                            <input className="check" type="checkbox" value={0} name="check"></input>
                                             <label className="check" for="check">Stay signed in</label>
                                             <div className="login-forgot">
                                                 <a>Forgot Password?</a>

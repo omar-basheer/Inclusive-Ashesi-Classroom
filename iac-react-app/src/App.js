@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { AuthProvider } from './pages/auth/AuthContext';
+import { AuthProvider } from './pages/auth/AuthProvider';
 import Login from '../src/pages/auth/Login';
 import SignUp from './pages/auth/SignUp';
 import Course from './pages/Course';
@@ -13,9 +13,9 @@ import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './pages/auth/ProtectedRoute';
 import Modules from './pages/Modules/Modules';
 import TextModule from './pages/Modules/TextModule';
+import VideoModule from './pages/Modules/VideoModule';
 
 function App() {
-    const [authToken, setAuthToken] = useState(null)
 
     return (
         <AuthProvider>
@@ -25,11 +25,13 @@ function App() {
                 <Route path="/Signup" element={<SignUp />} />
                 <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
                     <Route path="/Dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                    <Route path="/Dashboard/:courseID" element={<ProtectedRoute><Course /></ProtectedRoute>} />
-                    <Route path="/Dashboard/:courseID/Modules" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
-                    <Route path="/Dashboard/:courseID/Modules/Module" element={<ProtectedRoute><TextModule /></ProtectedRoute>} />
+                    <Route path="/:courseID" element={<ProtectedRoute><Course /></ProtectedRoute>} />
+                    <Route path="/:courseID/Modules" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
+                    <Route path="/:courseID/Modules/Module" element={<ProtectedRoute><TextModule /></ProtectedRoute>} />
                     <Route path="/Screening" element={<ProtectedRoute><Screening /></ProtectedRoute>} />
                     <Route path="/Preferences" element={<ProtectedRoute><Preferences /></ProtectedRoute>} />
+                    <Route path="/Vidmodule" element={<ProtectedRoute><VideoModule /></ProtectedRoute>} />
+                    <Route path="/Textmodule" element={<ProtectedRoute><TextModule /></ProtectedRoute>} />
                 </Route>
             </Routes>
         </AuthProvider>

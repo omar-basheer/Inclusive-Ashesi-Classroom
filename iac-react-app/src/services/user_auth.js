@@ -8,7 +8,6 @@ export const handleLogin = async (e, email, password, login, navigate) => {
         return emailRegex.test(email);
     }
 
-    console.log('making api call...')
     try {
         const response = await fetch('http://localhost:8080/api/students/login/', {
             method: 'POST',
@@ -22,21 +21,17 @@ export const handleLogin = async (e, email, password, login, navigate) => {
             console.log("login request error: login failed")
             return
         }
-        console.log('retrieviing token...')
         const data = await response.json()
-        const { token, user } = data
+        const { token, student_id } = data
 
         if (token) {
-            login(token, user);
-            console.log(token)
-            console.log(user)
+            login(token, student_id);
             navigate('/Dashboard');
         }
         else {
             navigate('/Login');
         }
-    }
-    catch (error) {
+    }catch (error) {
         console.error('An error occurred during login:', error);
     }
 }

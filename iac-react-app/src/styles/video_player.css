@@ -1,0 +1,65 @@
+.player-container{
+    position: relative;
+    background: #000;
+    font-family: Helvetica,Arial,serif;
+    text-align: left;
+    vertical-align: top;
+    text-indent: 0;
+}
+.video-player {
+    width: 100%;
+    max-width: 800px; /* Set a maximum width if needed */
+    margin: 0 auto; /* Center the player on the page */
+  }
+  
+  /* Style the ControlBar */
+  /* .video-react .video-react-control-bar {
+    background-color: #333; 
+    color: #fff; 
+    position: absolute;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(rgba(50,50,50,.7),rgba(0,0,0,.7));
+    height: 30px;
+    width: 100%;
+  } */
+  
+  /* Style the ReplayControl and ForwardControl buttons */
+  .video-react .video-react-control-bar .video-react-control-bar-button {
+    color: #fff; /* Change button text color */
+  }
+  
+  /* Style the CurrentTimeDisplay and TimeDivider */
+  /* .video-react .video-react-control-bar .video-react-time-control {
+    color: #fff; 
+    display: block;
+    height: 17px;
+    width: auto;
+    padding: 10px 3px 0;
+    overflow: hidden;
+    text-align: center;
+  } */
+  
+  /* Style the PlaybackRateMenuButton */
+  .video-react .video-react-control-bar .video-react-playback-rate {
+    color: #fff; /* Change rate text color */
+  }
+  
+  /* Style the VolumeMenuButton */
+  /* .video-react .video-react-control-bar .video-react-volume-menu-button {
+    color: #fff; 
+    background-image: none;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+    line-height: 11px;
+    font-family: Helvetica,Arial,serif;
+    border: 0;
+  } */

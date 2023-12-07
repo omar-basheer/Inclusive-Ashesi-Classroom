@@ -18,7 +18,7 @@ function Sidemenu({courseID}) {
                             <a className="section-link" href="">Announcements</a>
                         </li>
                         <li className="section">
-                            <Link to={`/Dashboard/${courseID}/Modules`} className="section-link">
+                            <Link to={`/${courseID}/Modules`} className="section-link">
                                 Modules
                             </Link>
                         </li>

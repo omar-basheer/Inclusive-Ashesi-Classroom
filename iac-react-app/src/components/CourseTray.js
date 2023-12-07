@@ -4,24 +4,23 @@ import PropTypes from 'prop-types';
 import { fetchCourseData } from '../services/user_courses';
 import "../styles/global.css"
 import "../styles/course_tray.css"
-import { useAuth } from '../pages/auth/AuthContext';
+// import { useAuth } from '../pages/auth/AuthProvider';
 
 
 function CourseTray({closeTray }) {
     const [courses, setCourses] = useState([]);
-    const {userInfo} = useAuth()
+    const student_id = JSON.parse(localStorage.getItem('student_id'))
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/students/courses/${userInfo.student_id}/`)
+                const response = await fetch(`http://localhost:8080/api/students/courses/${student_id}/`)
                 const data = await response.json();
                 setCourses(data);
             } catch (error) {
                 console.error('Error fetching courses:', error);
             }
         };
-
         fetchData();
     }, []);
 
@@ -61,7 +60,7 @@ function CourseTray({closeTray }) {
                                         <ul className='block-list'>
                                             {courses.map(course => (
                                                 <li className='list-item' key={course.course_id} onClick={handleCourseLinkClick}>
-                                                    <Link to={`/Dashboard/${course.course_id}`} className='view-link'>{`[${course.course_id}] - ${course.course_name}`}</Link>
+                                                    <Link to={`/${course.course_id}`} className='view-link'>{`[${course.course_id}] - ${course.course_name}`}</Link>
                                                     <div className='subtext'>23-24-SEM1</div>
                                                 </li>
                                             ))}

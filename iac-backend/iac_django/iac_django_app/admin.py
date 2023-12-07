@@ -15,7 +15,20 @@ class ModuleAdmin(admin.ModelAdmin):
     list_display = ['module_id', 'course', 'week', 'module_description']
 
 class FileAdmin(admin.ModelAdmin):
-    list_display = ['file_id', 'module', 'name', 'file_type', 'file']
+    list_display = ['file_id', 'module_id', 'module_course', 'module_week', 'name', 'file_type', 'file']
+
+    def module_id(self, obj):
+        return obj.module.module_id
+
+    def module_course(self, obj):
+        return obj.module.course
+
+    def module_week(self, obj):
+        return obj.module.week
+
+    module_id.admin_order_field = 'module__module_id'
+    module_course.admin_order_field = 'module__course'
+    module_week.admin_order_field = 'module__week'
 
 # Register models with custom admin classes
 admin.site.register(Student, StudentAdmin)
