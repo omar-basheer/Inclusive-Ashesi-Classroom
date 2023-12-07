@@ -53,5 +53,4 @@ class File(models.Model):
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     file_type = models.CharField(max_length=10)
-    # file = models.FileField(upload_to='files/', storage=settings.DEFAULT_FILE_STORAGE)
     file = models.FileField(upload_to='files/')

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types'; 
-import { useAuth } from './auth/AuthContext';
+import { useAuth } from './auth/AuthProvider';
 import '../styles/global.css'
 import '../styles/courses.css'
 import Sidemenu from "../components/Sidemenu";

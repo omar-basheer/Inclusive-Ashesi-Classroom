@@ -11,7 +11,6 @@ function Modules() {
     const [modules, setModules] = useState([]);
 
     useEffect(() => {
-        // Fetch modules data from your API
         const fetchModules = async () => {
             try {
                 const response = await fetch(`http://localhost:8080/api/courses/${courseID}/modules/`);

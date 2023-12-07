@@ -19,10 +19,7 @@ class RegisterStudentView(APIView):
     def post(self, request, format=None):
         serializer = StudentSerializer(data=request.data)
         if serializer.is_valid():
-            # save the user 
             serializer.save()
-            # Generate and return an authentication token
-            # token, created = Token.objects.get_or_create(user=user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -41,22 +38,46 @@ class LoginStudentView(APIView):
             login(request, user)
             token, created = Token.objects.get_or_create(user=user)
 
-            # Include additional information in the response
             response_data = {
                 'token': token.key,
-                'user': {
-                    'student_id': user.student_id,
-                    'first_name': user.first_name,
-                    'last_name': user.last_name,
-                    'email': user.email
-                }
+                'student_id': user.student_id,
             }
 
             return Response(response_data, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         
+class GetStudentInfoView(APIView):
 
+    def get(self, request, student_id):
+        # Get the token from the request header
+        provided_token = request.headers.get('Authorization')
+
+        # Check if the token is provided and starts with 'Token '
+        if not provided_token or not provided_token.startswith('Token '):
+            return Response({'error': 'Invalid or missing token'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        provided_token = provided_token.split(' ')[1]  # Extract the token from 'Token <token>'
+
+        try:
+            # Get the authenticated user from the token
+            authenticated_user = Token.objects.get(key=provided_token).user
+        except Token.DoesNotExist:
+            return Response({'error': 'Invalid token'}, status=status.HTTP_401_UNAUTHORIZED)
+
+        # Check if the authenticated user matches the requested student_id
+        if authenticated_user.student_id != student_id:
+            return Response({'error': 'Token does not match the requested student'}, status=status.HTTP_403_FORBIDDEN)
+
+        response_data = {
+            'student_id': authenticated_user.student_id,
+            'first_name': authenticated_user.first_name,
+            'last_name': authenticated_user.last_name,
+            'email': authenticated_user.email
+        }
+
+        return Response(response_data, status=status.HTTP_200_OK)
+    
 class DeleteStudentView(APIView):
     permission_classes = [IsAuthenticated, IsAdminUser]
 
