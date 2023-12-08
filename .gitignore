@@ -4,6 +4,9 @@
 .iac-react-app/node_modules
 /iac-react-app/node_modules
 
+.iac-react-app/node_modules/.cache
+/iac-react-app/node_modules/.cache
+
 .iac-backend/iac_django
 /iac-backend/iac_django
 
