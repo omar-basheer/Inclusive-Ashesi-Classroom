@@ -7,6 +7,12 @@
 .iac-react-app/node_modules/.cache
 /iac-react-app/node_modules/.cache
 
+.iac-react-app/node_modules/.cache/.eslintcache
+/iac-react-app/node_modules/.cache/.eslintcache
+
+.iac-react-app/node_modules/.cache/default-development
+/iac-react-app/node_modules/.cache/default-development
+
 .iac-backend/iac_django
 /iac-backend/iac_django
 
