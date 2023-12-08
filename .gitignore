@@ -16,8 +16,8 @@
 .iac-backend/iac_django
 /iac-backend/iac_django
 
-.iac-backend/iac_django/db.sqlite3
-/iac-backend/iac_django/db.sqlite3
+.iac-backend/iac_django/db
+/iac-backend/iac_django/db
 
 /node_modules
 /.pnp
