@@ -13,8 +13,8 @@
 /build
 
 # Virtual environment
-.env
-/env
+.venv
+/venv
 
 # misc
 .DS_Store
