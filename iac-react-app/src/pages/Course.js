@@ -17,9 +17,9 @@ function Course() {
 
     console.log(courseID)
 
-    const fetchCourseData = async (courseId) => {
+    const fetchCourseData = async (course_id) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/courses/${courseId}/`);
+            const response = await fetch(`http://localhost:8080/api/courses/${course_id}/`);
             const data = await response.json();
 
             setCourseTitle(`[${data.course_id}] - ${data.course_name}`);
