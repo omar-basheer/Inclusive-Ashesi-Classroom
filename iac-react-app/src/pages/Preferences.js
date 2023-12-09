@@ -43,6 +43,8 @@ function Preferences() {
                     {/* <Sidemenu /> */}
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">
+                            <h2>My Profile</h2>
+                            <br></br>
                             <a className="avatar-profile"></a>
                             {/* <h1 className="user-profile">{userInfo ? `${userInfo.first_name}, ${userInfo.last_name}'s Settings` : 'Loading...'}</h1> */}
                             <form className="profile-form">
@@ -121,11 +123,13 @@ function Preferences() {
                                     </tr>
                                 </table>
                             </form>
+                            <br></br>
+                            <br></br>
                             <h2>Feature options</h2>
                             <div className="feature-flag-wrapper">
                                 <div className="feature-options-container">
-                                    <span className=""></span>
-                                    <h2 className="user">User</h2>
+                                    {/* <span className=""></span> */}
+                                    {/* <h2 className="user">User</h2> */}
                                     <table className="feature-table">
                                         <thead className="tHead">
                                             <th className="colHeader" style={{ width: '50%' }}>Feature</th>
