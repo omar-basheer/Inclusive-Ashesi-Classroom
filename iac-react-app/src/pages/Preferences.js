@@ -40,7 +40,7 @@ function Preferences() {
         <div className="iac-app">
             <div className="iac-layout-columns">
                 <div className="iac-main-app-content">
-                    <Sidemenu />
+                    {/* <Sidemenu /> */}
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">
                             <a className="avatar-profile"></a>
