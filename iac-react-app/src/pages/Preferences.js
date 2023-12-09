@@ -81,7 +81,7 @@ function Preferences() {
                             <h2>My Profile</h2>
                             <br></br>
                             <a className="avatar-profile"></a>
-                            {/* <h1 className="user-profile">{userInfo ? `${info.first_name}, ${info.last_name}'s Settings` : 'Loading...'}</h1> */}
+                            <h1 className="user-profile">{info ? `${info.first_name}, ${info.last_name}'s Settings` : 'Loading...'}</h1>
                             <form className="profile-form">
                                 {/* hard coded user settings */}
                                 <table className="profile-table">
