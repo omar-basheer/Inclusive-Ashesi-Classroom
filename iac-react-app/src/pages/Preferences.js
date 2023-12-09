@@ -8,6 +8,7 @@ import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
 import { useState } from 'react';
 import AutoAidOption from "../components/AutoAidOption";
+import ProfileEdit from "../components/ProfileEdit";
 // import { useAuth } from "./auth/AuthProvider";
 
 function Preferences() {
@@ -53,6 +54,7 @@ function Preferences() {
                                         </th>
                                         <td className="table-td">
                                             {/* <span >{userInfo ? `${userInfo.first_name} ${userInfo.last_name}` : 'Loading...'}</span> */}
+                                            <span >Omar, Basheer</span>
                                             <span className="profile-table-description">
                                                 <br></br>
                                                 This name will be used for grading
@@ -174,7 +176,7 @@ function Preferences() {
                         </div>
                     </div>
                     <div className="iac-main-right-side-wrapper">
-                        <RightSide />
+                        <ProfileEdit/>
                     </div>
                 </div>
             </div>
