@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import '../../styles/auth.css'
 
+
 // create context for authentication
 const AuthContext = createContext()
 

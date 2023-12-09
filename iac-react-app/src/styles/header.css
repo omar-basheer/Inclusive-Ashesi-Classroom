@@ -118,3 +118,16 @@
     font-size: 0.775rem;
     font-weight: 400;
 }
+
+.logout-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10px;
+}
+
+.logout-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer; /* Optional: Add pointer cursor for better user experience */
+}
