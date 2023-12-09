@@ -13,9 +13,12 @@ function ProfileEdit(){
                     <i class="icon-stats"></i>
                     Edit your Profile
                 </a>
+                <a class="btn1 button-sidebar-wide" href="">
+                    <i class="icon-stats"></i>
+                    Delete Account
+                </a>
             </div>
         </div>
-        <ToDo />
     </div>
     )
 }
