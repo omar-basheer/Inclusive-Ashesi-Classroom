@@ -18,10 +18,11 @@ function Header() {
     
         if (isConfirmed) {
             authContext.logout();
-            navigate('/Login');
 
         }
     };
+
+    
 
     const [isSideMenuOpen, setSideMenuOpen] = useState(false)
 

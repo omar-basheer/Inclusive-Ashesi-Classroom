@@ -6,7 +6,7 @@ function ProtectedRoute({children}){
     const navigate = useNavigate()
     const token  = true
     if (!token){
-        navigate('/Login');
+        navigate('/login');
     }
     return(
         children

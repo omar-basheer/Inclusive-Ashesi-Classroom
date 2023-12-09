@@ -14,6 +14,9 @@ import ProfileEdit from "../components/ProfileEdit";
 function Preferences() {
 
     const token = JSON.parse(localStorage.getItem('token'))
+    if (token == null){    // Replace the entire history with the login page path
+        window.history.replaceState(null, '', '/');
+        window.location.reload();}
     const student_id = JSON.parse(localStorage.getItem('student_id'))
     const [info, setInfo] = useState("")
     console.log(token)
