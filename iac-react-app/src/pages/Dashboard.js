@@ -11,9 +11,10 @@ import { useNavigate } from 'react-router-dom';
 function Dashboard() {
     // const { user } = useContext(AuthContext)
     const token = JSON.parse(localStorage.getItem('token'))
-    if (token == null){    // Replace the entire history with the login page path
+    if (token == null){    
         window.history.replaceState(null, '', '/');
-        window.location.reload();}
+        window.location.reload();
+    }
     const student_id = JSON.parse(localStorage.getItem('student_id'))
     const [info, setInfo] = useState("")
     console.log(token)

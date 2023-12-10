@@ -16,9 +16,10 @@ function Course() {
     const [homeContent, setHomeContent] = useState('');
 
     console.log(courseID)
-    if (courseID == null){    // Replace the entire history with the login page path
+    if (courseID == null){    
         window.history.replaceState(null, '', '/');
-        window.location.reload();}
+        window.location.reload();
+        }
 
     const fetchCourseData = async (course_id) => {
         try {

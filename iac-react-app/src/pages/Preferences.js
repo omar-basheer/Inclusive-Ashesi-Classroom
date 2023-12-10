@@ -14,9 +14,10 @@ import ProfileEdit from "../components/ProfileEdit";
 function Preferences() {
 
     const token = JSON.parse(localStorage.getItem('token'))
-    if (token == null){    // Replace the entire history with the login page path
+    if (token == null){    
         window.history.replaceState(null, '', '/');
-        window.location.reload();}
+        window.location.reload();
+    }
     const student_id = JSON.parse(localStorage.getItem('student_id'))
     const [info, setInfo] = useState("")
     console.log(token)
@@ -81,7 +82,11 @@ function Preferences() {
                             <h2>My Profile</h2>
                             <br></br>
                             <a className="avatar-profile"></a>
-                            <h1 className="user-profile">{info ? `${info.first_name}, ${info.last_name}'s Settings` : 'Loading...'}</h1>
+                            {/* <h1 className="user-profile">{info ? `${info.first_name}, ${info.last_name}'s Settings` : 'Loading...'}</h1> */}
+                            <PageContent
+                                contentTitle={info ? `${info.first_name} ${info.last_name}'s settings` : 'Loading...'}
+                            // richContent={richContent}
+                            />
                             <form className="profile-form">
                                 {/* hard coded user settings */}
                                 <table className="profile-table">

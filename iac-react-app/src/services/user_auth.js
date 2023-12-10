@@ -19,6 +19,7 @@ export const handleLogin = async (e, email, password, login, navigate) => {
 
         if (!response.ok) {
             console.log("login request error: login failed")
+            alert("Incorrect login info")
             return
         }
         const data = await response.json()
@@ -26,6 +27,7 @@ export const handleLogin = async (e, email, password, login, navigate) => {
 
         if (token) {
             login(token, student_id);
+            alert("You are successfully logged in");
             navigate('/Dashboard');
         }
         else {
