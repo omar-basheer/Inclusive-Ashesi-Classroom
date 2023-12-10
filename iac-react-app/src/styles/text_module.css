@@ -1,7 +1,61 @@
-h1, h2, .h1, .h2 {
-    font-size: 1.8em;
-    line-height: 1.5;
-    font-weight: normal;
-    margin: 6px 0;
-    font-family: "Lato Extended","Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+h1,
+h2,
+.h1,
+.h2 {
+  font-size: 1.8em;
+  line-height: 1.5;
+  font-weight: normal;
+  margin: 6px 0;
+  font-family: "Lato Extended", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+.doc-preview {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.side-aid-section {
+  margin-top: 5px;
+  /* border-left: 2px solid rgb(181, 186, 196); */
+  /* padding-left: 10px; */
+}
+
+.summarize-section{
+  margin-top: 15px;
+  padding-top: 2px;
+  color: black;
+  font-size: 0.9em;
+}
+
+.summary{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.summary-box{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid rgb(181, 186, 196);
+  border-radius: 6px;
+  margin-bottom: 18px;
+  height: 526px;
+}
+
+.summary-text{
+  flex: 1 1 0%;
+  padding: 16px 20px 0px;
+  line-height: 1.5;
+  overflow-y: scroll;
+}
+
+.box-bottom{
+  display: block;
+  font-size: 12px;
+  padding: 12px 24px;
+  color: var(--color-gray);
 }

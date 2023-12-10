@@ -20,6 +20,7 @@
 /iac-backend/iac_django/db
 
 node_modules/
+djangoenv/
 /.pnp
 .pnp.js
 

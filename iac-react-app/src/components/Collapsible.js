@@ -71,7 +71,7 @@ function Collapsible({ moduleDescription, files }) {
                                 <div className='item-info'>
                                     <div className='item-title'>
                                         <span className='item-name'>
-                                            <Link className='item' to={`/${courseID}/Modules/${getModuleType(file.file_type)}/${file.id}`}>
+                                            <Link className='item' to={`/${courseID}/Modules/${getModuleType(file.file_type)}/${file.file_id}`}>
                                                 {file.name}
                                             </Link>
                                         </span>

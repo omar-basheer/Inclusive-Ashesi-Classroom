@@ -27,11 +27,12 @@ function App() {
                     <Route path="/Dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                     <Route path="/:courseID" element={<ProtectedRoute><Course /></ProtectedRoute>} />
                     <Route path="/:courseID/Modules" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
-                    <Route path="/:courseID/Modules/Video/:file" element={<ProtectedRoute><VideoModule /></ProtectedRoute>} />
-                    <Route path="/:courseID/Modules/Doc/:file" element={<ProtectedRoute><TextModule /></ProtectedRoute>} />
+                    <Route path="/:courseID/Modules/Video/:file_id" element={<ProtectedRoute><VideoModule /></ProtectedRoute>} />
+                    <Route path="/:courseID/Modules/Doc/:file_id" element={<ProtectedRoute><TextModule /></ProtectedRoute>} />
                     <Route path="/Preferences" element={<ProtectedRoute><Preferences /></ProtectedRoute>} />
                     <Route path="/Screening" element={<ProtectedRoute><Screening /></ProtectedRoute>} />
                 </Route>
+                    {/* <Route path="/Preferences" element={<ProtectedRoute><Preferences /></ProtectedRoute>} /> */}
             </Routes>
         </AuthProvider>
     );

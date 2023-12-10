@@ -8,7 +8,9 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
 from .models import Student, Course, Module, File, Enrollment
 from django.contrib.auth import get_user_model
-from .serializers import StudentSerializer, CourseSerializer, EnrollmentSerializer, ModuleSerializer, FileSerializer, CourseLinksSerializer
+from django.http import FileResponse, HttpResponse
+from django.shortcuts import get_object_or_404
+from .serializers import FileSerializer, StudentSerializer, CourseSerializer, EnrollmentSerializer, ModuleSerializer, AllFileSerializer, CourseLinksSerializer
 
 """
 Classes for Student signup and login
@@ -141,7 +143,7 @@ class GetModulesView(APIView):
 
                 # Get all files associated with the module
                 files = File.objects.filter(module=module)
-                file_data = FileSerializer(files, many=True).data
+                file_data = AllFileSerializer(files, many=True).data
 
                 # Add file data to the module data
                 module_serializer['files'] = file_data
@@ -152,3 +154,50 @@ class GetModulesView(APIView):
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         
+
+class GetFileView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, file_id):
+        try:
+            file = File.objects.get(file_id=file_id)
+        except File.DoesNotExist:
+            return Response({"error": f"File with ID {file_id} not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        # Assuming the 'file' field is a FileField
+        file_path = file.file.path
+
+        # Use Django's FileResponse to serve the file
+        response = FileResponse(open(file_path, 'rb'), content_type='application/octet-stream')
+        response['Content-Disposition'] = f'attachment; filename="{file.name}"'
+        return response
+
+    # def get(self, request, file_id):
+    #     try:
+    #         file = File.objects.get(file_id=file_id)
+    #     except File.DoesNotExist:
+    #         return Response({"error": f"File with ID {file_id} not found."}, status=status.HTTP_404_NOT_FOUND)
+        
+    #     serializer = FileSerializer(file)
+
+    #     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+    # def get(self, request, file_id):
+    #     file_obj = get_object_or_404(File, file_id=file_id)
+
+    #     # Open the file and create a FileResponse
+    #     try:
+    #         file_path = file_obj.file.path
+    #         with open(file_path, 'rb') as file_content:
+    #             response = FileResponse(file_content)
+                
+    #             # Set the content type based on the file type
+    #             response['Content-Type'] = file_obj.file_type
+
+    #             # Optionally, set the Content-Disposition header to control how the file is handled by the browser
+    #             response['Content-Disposition'] = f'attachment; filename="{file_obj.name}"'
+
+    #             return response
+    #     except Exception as e:
+    #         return HttpResponse(f"Error serving file: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)

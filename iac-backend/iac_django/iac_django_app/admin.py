@@ -11,8 +11,13 @@ class CourseAdmin(admin.ModelAdmin):
 class EnrollmentAdmin(admin.ModelAdmin):
     list_display = ['student', 'course']
 
+class FileInline(admin.TabularInline):  # or admin.StackedInline for a different layout
+    model = File
+    extra = 1
+
 class ModuleAdmin(admin.ModelAdmin):
     list_display = ['module_id', 'course', 'week', 'module_description']
+    inlines = [FileInline]
 
 class FileAdmin(admin.ModelAdmin):
     list_display = ['file_id', 'module_id', 'module_course', 'module_week', 'name', 'file_type', 'file']

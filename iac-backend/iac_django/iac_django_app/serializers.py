@@ -34,8 +34,13 @@ class ModuleSerializer(serializers.ModelSerializer):
         model = Module
         fields = ['module_id', 'course', 'week', 'module_description']
 
+class AllFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = File
+        fields = ['file_id', 'module', 'name', 'file_type']
+        # read_only_fields = ['file']
+
 class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
-        fields = ['file_id', 'module', 'name', 'file_type', 'file']
-        read_only_fields = ['file']
+        fields = ['name', 'file']
