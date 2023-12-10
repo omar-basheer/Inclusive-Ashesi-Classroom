@@ -1,22 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../pages/auth/AuthProvider';
+import { AuthProvider } from '../pages/auth/AuthProvider';
+import { useNavigate } from 'react-router-dom';
+
 import "../styles/global.css"
 import "../styles/header.css"
 import CourseTray from './CourseTray';
 
 
 function Header() {
-    const [isSideMenuOpen, setSideMenuOpen] = useState(false)
+
+    const authContext = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        const isConfirmed = window.confirm("Are you sure you want to logout?");
+    
+        if (isConfirmed) {
+            authContext.logout();
+
+        }
+    };
+    
+    const [isCourseMenuOpen, setCourseMenuOpen] = useState(false)
 
     const handleIconClick = () => {
-        setSideMenuOpen(!isSideMenuOpen)
+        setCourseMenuOpen(!isCourseMenuOpen)
     }
 
     const closeCourseTray = () => {
-        setSideMenuOpen(false);
+        setCourseMenuOpen(false);
     }
     return (
         <div>
-            {isSideMenuOpen && (<CourseTray closeTray={closeCourseTray} />)}
+            {isCourseMenuOpen && (<CourseTray closeTray={closeCourseTray} />)}
             <div className='iac-app-header'>
                 <div className='main-nav'>
                     <div className='logo-container'>
@@ -120,6 +137,14 @@ function Header() {
                             </a>
                         </li>
                     </ul>
+                    <div className='logout-container'>
+                        <button className='logout-button' onClick={handleLogout}>
+                            <svg className='iac-icon' xmlns="http://www.w3.org/2000/svg" width="26" height="32" viewBox="0 0 26 32" fill="none">
+                                <path d="M25.675 30.28V2.47998H24.167V30.28H25.675ZM22.4705 16.38L14.4105 3.99998L13.3445 5.60998L19.591 15.22H0.325012V17.53H19.591L13.3445 27.14L14.4105 28.78L22.4705 16.38Z" fill="white"/>
+                            </svg>
+                            
+                        </button>
+                    </div>
                 </div>
                 <div className='secondary-nav'></div>
             </div>

@@ -139,7 +139,7 @@ h1, h2, .h1, .h2 {
 
 .view-cell{
     vertical-align: middle;
-    padding: 0.75rem 0.75rem;
+    padding: 0.50rem 0.50rem;
     text-align: start;
     width: 30%;
 }
@@ -249,13 +249,13 @@ h1, h2, .h1, .h2 {
 
 .toggle-details-toggle:active{
     border: 1.5px solid #923D41;
-    padding: 5px 3px;
+    padding: 5px 5px;
     border-radius: 5px;
 }
 
 .toggle-details-toggle.expanded {
     border: 1.5px solid #923D41;
-    padding: 5px 3px;
+    padding: 2px 2px;
     border-radius: 5px;
   }
 
@@ -268,10 +268,15 @@ h1, h2, .h1, .h2 {
 }
 
 .toggle-icon{
-    margin-inline: 0px 0.375rem;
+    /* margin-inline: 0px 0.20rem; */
+    padding: 2px 2px;
     font-size: 0.75rem;
     color: #ffffff;
     /* display: block; */
+}
+
+.summary_text{
+    padding: 2px 2px;
 }
 
 

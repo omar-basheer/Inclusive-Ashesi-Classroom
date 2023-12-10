@@ -2,11 +2,11 @@
 export const handleLogin = async (e, email, password, login, navigate) => {
     e.preventDefault();
 
-    const isValidEmail = (email) => {
-        // Email regex pattern: firstname.lastname@ashesi.edu.gh
-        const emailRegex = /^[a-zA-Z]+[.][a-zA-Z]+@ashesi\.edu\.gh$/;
-        return emailRegex.test(email);
-    }
+    // const isValidEmail = (email) => {
+    //     // Email regex pattern: firstname.lastname@ashesi.edu.gh
+    //     const emailRegex = /^[a-zA-Z]+[.][a-zA-Z]+@ashesi\.edu\.gh$/;
+    //     return emailRegex.test(email);
+    // }
 
     try {
         const response = await fetch('http://localhost:8080/api/students/login/', {
@@ -19,6 +19,7 @@ export const handleLogin = async (e, email, password, login, navigate) => {
 
         if (!response.ok) {
             console.log("login request error: login failed")
+            alert("Incorrect login info")
             return
         }
         const data = await response.json()
@@ -26,6 +27,7 @@ export const handleLogin = async (e, email, password, login, navigate) => {
 
         if (token) {
             login(token, student_id);
+            alert("You are successfully logged in");
             navigate('/Dashboard');
         }
         else {
@@ -65,7 +67,7 @@ export const handleSignUp = async (e, student_id, firstName, lastName, email, pa
         console.log(data.data)
 
         if (response.ok) {
-            if (response.status == 201){
+            if (response.status === 201){
                 navigate('/Screening');
             }
             else{

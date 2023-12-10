@@ -6,15 +6,20 @@ import ToDo from "../components/ToDo";
 import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
 import { AuthContext } from "./auth/AuthProvider";
-
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
     // const { user } = useContext(AuthContext)
-    const token = JSON.parse(localStorage.getItem('token'))
     const student_id = JSON.parse(localStorage.getItem('student_id'))
+    const token = JSON.parse(localStorage.getItem('token'))
     const [info, setInfo] = useState("")
-    console.log(token)
-    console.log(student_id)
+
+    if (token == null){    
+        window.history.replaceState(null, '', '/Login');
+        window.location.reload();
+    }
+    // console.log(token)
+    // console.log(student_id)
 
     useEffect(() => {
         const fetchStudentData = async () => {
@@ -33,6 +38,7 @@ function Dashboard() {
                 const data = await response.json();
                 setInfo(data);
                 localStorage.setItem('info', JSON.stringify(info));
+                console.log(info)
             } catch (error) {
                 console.error('Error fetching student data:', error);
             }

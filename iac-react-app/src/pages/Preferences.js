@@ -6,11 +6,48 @@ import { useNavigate } from 'react-router-dom';
 import Sidemenu from "../components/Sidemenu";
 import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import AutoAidOption from "../components/AutoAidOption";
+import ProfileEdit from "../components/ProfileEdit";
 // import { useAuth } from "./auth/AuthProvider";
 
 function Preferences() {
+
+    const token = JSON.parse(localStorage.getItem('token'))
+    if (token == null){    
+        window.history.replaceState(null, '', '/');
+        window.location.reload();
+    }
+    const student_id = JSON.parse(localStorage.getItem('student_id'))
+    const [info, setInfo] = useState("")
+    console.log(token)
+    console.log(student_id)
+
+    useEffect(() => {
+        const fetchStudentData = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/students/get/${student_id}/`,{
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Token ' + token
+                    },
+                })
+                if (!response.ok) {
+                    console.log("student fetch error: failed to fetch student data")
+                    return
+                }
+                const data = await response.json();
+                setInfo(data);
+                localStorage.setItem('info', JSON.stringify(info));
+            } catch (error) {
+                console.error('Error fetching student data:', error);
+            }
+        };
+
+        fetchStudentData();
+    }, [ student_id, token, info]);
+
     const Title = "System Preferences"
     // const {userInfo} = useAuth()
 
@@ -39,11 +76,17 @@ function Preferences() {
         <div className="iac-app">
             <div className="iac-layout-columns">
                 <div className="iac-main-app-content">
-                    <Sidemenu />
+                    {/* <Sidemenu /> */}
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">
+                            <h2>My Profile</h2>
+                            <br></br>
                             <a className="avatar-profile"></a>
-                            {/* <h1 className="user-profile">{userInfo ? `${userInfo.first_name}, ${userInfo.last_name}'s Settings` : 'Loading...'}</h1> */}
+                            {/* <h1 className="user-profile">{info ? `${info.first_name}, ${info.last_name}'s Settings` : 'Loading...'}</h1> */}
+                            <PageContent
+                                contentTitle={info ? `${info.first_name} ${info.last_name}'s settings` : 'Loading...'}
+                            // richContent={richContent}
+                            />
                             <form className="profile-form">
                                 {/* hard coded user settings */}
                                 <table className="profile-table">
@@ -53,6 +96,7 @@ function Preferences() {
                                         </th>
                                         <td className="table-td">
                                             {/* <span >{userInfo ? `${userInfo.first_name} ${userInfo.last_name}` : 'Loading...'}</span> */}
+                                            <span >{info.first_name} {info.last_name}</span>
                                             <span className="profile-table-description">
                                                 <br></br>
                                                 This name will be used for grading
@@ -64,7 +108,7 @@ function Preferences() {
                                             <label className="profile-table-info">Display name:</label>
                                         </th>
                                         <td className="table-td">
-                                            <span >Omar, Basheer</span>
+                                            <span >{info.first_name} {info.last_name}</span>
                                             <span className="profile-table-description">
                                                 <br></br>
                                                 People will see this name in discussions, messages and comments.
@@ -76,7 +120,7 @@ function Preferences() {
                                             <label className="profile-table-info">Sortable name:</label>
                                         </th>
                                         <td className="table-td">
-                                            <span >Basheer, Omar</span>
+                                            <span >{info.last_name}, {info.first_name}</span>
                                             <span className="profile-table-description">
                                                 <br></br>
                                                 This name appears in sorted lists.
@@ -119,11 +163,13 @@ function Preferences() {
                                     </tr>
                                 </table>
                             </form>
+                            <br></br>
+                            <br></br>
                             <h2>Feature options</h2>
                             <div className="feature-flag-wrapper">
                                 <div className="feature-options-container">
-                                    <span className=""></span>
-                                    <h2 className="user">User</h2>
+                                    {/* <span className=""></span> */}
+                                    {/* <h2 className="user">User</h2> */}
                                     <table className="feature-table">
                                         <thead className="tHead">
                                             <th className="colHeader" style={{ width: '50%' }}>Feature</th>
@@ -174,7 +220,7 @@ function Preferences() {
                         </div>
                     </div>
                     <div className="iac-main-right-side-wrapper">
-                        <RightSide />
+                        <ProfileEdit/>
                     </div>
                 </div>
             </div>
