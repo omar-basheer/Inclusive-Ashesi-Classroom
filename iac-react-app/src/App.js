@@ -12,8 +12,7 @@ import Preferences from './pages/Preferences';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from './pages/auth/ProtectedRoute';
 import Modules from './pages/Modules/Modules';
-import TextModule from './pages/Modules/TextModule';
-import VideoModule from './pages/Modules/VideoModule';
+import Module from './pages/Modules/Module';
 
 function App() {
 
@@ -27,8 +26,7 @@ function App() {
                     <Route path="/Dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                     <Route path="/:courseID" element={<ProtectedRoute><Course /></ProtectedRoute>} />
                     <Route path="/:courseID/Modules" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
-                    <Route path="/:courseID/Modules/Video/:file_id" element={<ProtectedRoute><VideoModule /></ProtectedRoute>} />
-                    <Route path="/:courseID/Modules/Doc/:file_id" element={<ProtectedRoute><TextModule /></ProtectedRoute>} />
+                    <Route path="/:courseID/Modules/:file_id" element={<ProtectedRoute><Module /></ProtectedRoute>} />
                     <Route path="/Preferences" element={<ProtectedRoute><Preferences /></ProtectedRoute>} />
                     <Route path="/Screening" element={<ProtectedRoute><Screening /></ProtectedRoute>} />
                 </Route>

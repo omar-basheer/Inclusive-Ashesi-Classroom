@@ -50,6 +50,7 @@ class LoginStudentView(APIView):
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
         
 class GetStudentInfoView(APIView):
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, student_id):
         # Get the token from the request header
@@ -98,7 +99,7 @@ Classes for Student course retrieval
 """
 
 class GetStudentCoursesView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, student_id):
         try:
@@ -114,7 +115,7 @@ class GetStudentCoursesView(APIView):
 
 
 class GetCourseDetailsView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, course_id):
         try:
@@ -129,7 +130,7 @@ class GetCourseDetailsView(APIView):
 
 
 class GetModulesView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, course_id):
         try:
@@ -156,31 +157,31 @@ class GetModulesView(APIView):
         
 
 class GetFileView(APIView):
-    permission_classes = [AllowAny]
-
-    def get(self, request, file_id):
-        try:
-            file = File.objects.get(file_id=file_id)
-        except File.DoesNotExist:
-            return Response({"error": f"File with ID {file_id} not found."}, status=status.HTTP_404_NOT_FOUND)
-
-        # Assuming the 'file' field is a FileField
-        file_path = file.file.path
-
-        # Use Django's FileResponse to serve the file
-        response = FileResponse(open(file_path, 'rb'), content_type='application/octet-stream')
-        response['Content-Disposition'] = f'attachment; filename="{file.name}"'
-        return response
+    permission_classes = [IsAuthenticated]
 
     # def get(self, request, file_id):
     #     try:
     #         file = File.objects.get(file_id=file_id)
     #     except File.DoesNotExist:
     #         return Response({"error": f"File with ID {file_id} not found."}, status=status.HTTP_404_NOT_FOUND)
-        
-    #     serializer = FileSerializer(file)
 
-    #     return Response(serializer.data, status=status.HTTP_200_OK)
+    #     # Assuming the 'file' field is a FileField
+    #     file_path = file.file.path
+
+    #     # Use Django's FileResponse to serve the file
+    #     response = FileResponse(open(file_path, 'rb'), content_type='application/octet-stream')
+    #     response['Content-Disposition'] = f'attachment; filename="{file.name}"'
+    #     return response
+
+    def get(self, request, file_id):
+        try:
+            file = File.objects.get(file_id=file_id)
+        except File.DoesNotExist:
+            return Response({"error": f"File with ID {file_id} not found."}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = AllFileSerializer(file)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     # def get(self, request, file_id):

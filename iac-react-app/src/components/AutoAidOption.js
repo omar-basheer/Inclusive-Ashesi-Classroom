@@ -28,7 +28,7 @@ function AutoAidOption ({
                   </svg>
                 )}
               </span>
-              <span className="summary text">{summary}</span>
+              <span className="summary_text">{summary}</span>
             </span>
           </button>
           <div className={expanded ? 'expandable_1' : 'expandable_0'}>

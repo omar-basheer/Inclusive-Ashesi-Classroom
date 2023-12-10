@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import { useAuth } from './auth/AuthProvider';
 import '../styles/global.css'
 import '../styles/courses.css'
@@ -11,28 +11,35 @@ import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
 
 function Course() {
+    const token = JSON.parse(localStorage.getItem('token'))
     const { courseID } = useParams();
     const [courseTitle, setCourseTitle] = useState('');
     const [homeContent, setHomeContent] = useState('');
 
     console.log(courseID)
-    if (courseID == null){    
-        window.history.replaceState(null, '', '/');
+    if (token == null) {
+        window.history.replaceState(null, '', '/Login');
         window.location.reload();
-        }
+    }
 
     const fetchCourseData = async (course_id) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/courses/${course_id}/`);
+            const response = await fetch(`http://localhost:8080/api/courses/${course_id}/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Token ' + token
+                },
+            });
             const data = await response.json();
 
             setCourseTitle(`[${data.course_id}] - ${data.course_name}`);
-            setHomeContent(data.course_description); 
+            setHomeContent(data.course_description);
         } catch (error) {
             console.error('Error fetching course data:', error);
         }
     };
-    
+
     useEffect(() => {
         fetchCourseData(courseID);
     }, [courseID]);
@@ -41,8 +48,8 @@ function Course() {
         <div className="iac-app">
             <div className="iac-layout-columns">
                 <div className="iac-main-app-content">
-                    <Sidemenu 
-                    courseID={courseID}
+                    <Sidemenu
+                        courseID={courseID}
                     />
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">

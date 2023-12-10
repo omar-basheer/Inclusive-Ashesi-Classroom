@@ -10,11 +10,18 @@ import "../styles/course_tray.css"
 function CourseTray({closeTray }) {
     const [courses, setCourses] = useState([]);
     const student_id = JSON.parse(localStorage.getItem('student_id'))
+    const token = JSON.parse(localStorage.getItem('token'))
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/students/courses/${student_id}/`)
+                const response = await fetch(`http://localhost:8080/api/students/courses/${student_id}/`,{
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Token ' + token
+                    },
+                })
                 const data = await response.json();
                 setCourses(data);
             } catch (error) {

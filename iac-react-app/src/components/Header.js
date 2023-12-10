@@ -21,22 +21,19 @@ function Header() {
 
         }
     };
-
     
-
-    const [isSideMenuOpen, setSideMenuOpen] = useState(false)
+    const [isCourseMenuOpen, setCourseMenuOpen] = useState(false)
 
     const handleIconClick = () => {
-        setSideMenuOpen(!isSideMenuOpen)
+        setCourseMenuOpen(!isCourseMenuOpen)
     }
 
     const closeCourseTray = () => {
-        setSideMenuOpen(false);
+        setCourseMenuOpen(false);
     }
     return (
-        <AuthProvider>
         <div>
-            {isSideMenuOpen && (<CourseTray closeTray={closeCourseTray} />)}
+            {isCourseMenuOpen && (<CourseTray closeTray={closeCourseTray} />)}
             <div className='iac-app-header'>
                 <div className='main-nav'>
                     <div className='logo-container'>
@@ -153,7 +150,6 @@ function Header() {
             </div>
 
         </div>
-        </AuthProvider>
     )
 }
 

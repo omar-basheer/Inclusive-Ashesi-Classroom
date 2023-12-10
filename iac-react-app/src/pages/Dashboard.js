@@ -10,15 +10,16 @@ import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
     // const { user } = useContext(AuthContext)
+    const student_id = JSON.parse(localStorage.getItem('student_id'))
     const token = JSON.parse(localStorage.getItem('token'))
+    const [info, setInfo] = useState("")
+
     if (token == null){    
-        window.history.replaceState(null, '', '/');
+        window.history.replaceState(null, '', '/Login');
         window.location.reload();
     }
-    const student_id = JSON.parse(localStorage.getItem('student_id'))
-    const [info, setInfo] = useState("")
-    console.log(token)
-    console.log(student_id)
+    // console.log(token)
+    // console.log(student_id)
 
     useEffect(() => {
         const fetchStudentData = async () => {

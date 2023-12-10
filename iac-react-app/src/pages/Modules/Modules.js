@@ -7,13 +7,20 @@ import Collapsible from "../../components/Collapsible";
 
 
 function Modules() {
+    const token = JSON.parse(localStorage.getItem('token'))
     const { courseID } = useParams();
     const [modules, setModules] = useState([]);
 
     useEffect(() => {
         const fetchModules = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/courses/${courseID}/modules/`);
+                const response = await fetch(`http://localhost:8080/api/courses/${courseID}/modules/`,{
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Token ' + token
+                    },
+                });
                 const data = await response.json();
                 console.log(data)
                 setModules(data);
