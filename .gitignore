@@ -1,8 +1,8 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# .gitignore
 
-# dependencies
-.iac-react-app/node_modules
-/iac-react-app/node_modules
+# Ignore node_modules in iac-react-app
+iac-react-app/node_modules/
+/iac-react-app/node_modules/
 
 .iac-react-app/node_modules/.cache
 /iac-react-app/node_modules/.cache
@@ -13,14 +13,12 @@
 .iac-react-app/node_modules/.cache/default-development
 /iac-react-app/node_modules/.cache/default-development
 
-.iac-backend/iac_django
-/iac-backend/iac_django
+# Ignore virtual environment
+/djangoenv/
+/.vscode/
 
-.iac-backend/iac_django/db
-/iac-backend/iac_django/db
+db.sqlite3
 
-node_modules/
-djangoenv/
 /.pnp
 .pnp.js
 
