@@ -9,20 +9,22 @@ import RightSide from "../components/RightSide";
 import { useState, useEffect} from 'react';
 import AutoAidOption from "../components/AutoAidOption";
 import ProfileEdit from "../components/ProfileEdit";
-// import { useAuth } from "./auth/AuthProvider";
 
+// Preferences page
 function Preferences() {
-
+    // Redirect to login page if not logged in
     const token = JSON.parse(localStorage.getItem('token'))
     if (token == null){    
         window.history.replaceState(null, '', '/');
         window.location.reload();
     }
+    // Fetch student data
     const student_id = JSON.parse(localStorage.getItem('student_id'))
     const [info, setInfo] = useState("")
     console.log(token)
     console.log(student_id)
 
+    // Fetch student data
     useEffect(() => {
         const fetchStudentData = async () => {
             try {
@@ -33,6 +35,7 @@ function Preferences() {
                         'Authorization': 'Token ' + token
                     },
                 })
+                // If the response is not 200 OK, print error message
                 if (!response.ok) {
                     console.log("student fetch error: failed to fetch student data")
                     return
@@ -49,8 +52,8 @@ function Preferences() {
     }, [ student_id, token, info]);
 
     const Title = "System Preferences"
-    // const {userInfo} = useAuth()
 
+    // const richContent = "This is the rich content for the page.
     const [expandedState, setExpandedState] = useState(new Array(4).fill(false));
     const [arrowDirection, setArrowDirection] = useState(new Array(4).fill("down"));
     const [isSwitched, setIsSwitched] = useState(new Array(4).fill(false));
@@ -72,6 +75,7 @@ function Preferences() {
         setIsSwitched(newIsSwitched);
     };
 
+    
     return (
         <div className="iac-app">
             <div className="iac-layout-columns">

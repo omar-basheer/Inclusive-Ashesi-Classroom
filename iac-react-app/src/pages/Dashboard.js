@@ -8,19 +8,18 @@ import RightSide from "../components/RightSide";
 import { AuthContext } from "./auth/AuthProvider";
 import { useNavigate } from 'react-router-dom';
 
+// Dashboard page
 function Dashboard() {
-    // const { user } = useContext(AuthContext)
     const student_id = JSON.parse(localStorage.getItem('student_id'))
     const token = JSON.parse(localStorage.getItem('token'))
     const [info, setInfo] = useState("")
 
+    // Redirect to login page if not logged in
     if (token == null){    
         window.history.replaceState(null, '', '/Login');
         window.location.reload();
     }
-    // console.log(token)
-    // console.log(student_id)
-
+    // Fetch student data
     useEffect(() => {
         const fetchStudentData = async () => {
             try {
@@ -31,12 +30,14 @@ function Dashboard() {
                         'Authorization': 'Token ' + token
                     },
                 })
+                // If the response is not 200 OK, print error message
                 if (!response.ok) {
                     console.log("student fetch error: failed to fetch student data")
                     return
                 }
                 const data = await response.json();
                 setInfo(data);
+                // Save student data to local storage
                 localStorage.setItem('info', JSON.stringify(info));
                 console.log(info)
             } catch (error) {
@@ -55,7 +56,6 @@ function Dashboard() {
                         <div className="iac-main-content">
                             <PageContent
                                 contentTitle={info ? `${info.first_name} ${info.last_name}'s dashboard` : 'Loading...'}
-                            // richContent={richContent}
                             />
                         </div>
                     </div>

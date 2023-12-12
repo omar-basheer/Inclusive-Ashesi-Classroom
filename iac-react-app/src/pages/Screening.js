@@ -6,6 +6,7 @@ import Sidemenu from "../components/Sidemenu";
 import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
 
+// Screening page
 function Screening() {
     const Title = "Screening Form"
     const richContent = `                   
