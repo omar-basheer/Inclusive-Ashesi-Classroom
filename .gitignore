@@ -20,6 +20,8 @@ djangoenv/
 
 db.sqlite3
 
+iac-react-app/node_modules/
+node_modules/
 /.pnp
 .pnp.js
 
@@ -43,3 +45,5 @@ db.sqlite3
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.env
+env
