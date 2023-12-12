@@ -14,7 +14,7 @@ function Modules() {
     useEffect(() => {
         const fetchModules = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/courses/${courseID}/modules/`,{
+                const response = await fetch(`http://localhost:8080/api/courses/${courseID}/modules/`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ function Modules() {
                             <div className="header-bar"></div>
                             <div className="item-group-container">
                                 <div className="context-modules">
-                                {modules.map(module => (
+                                    {modules.map(module => (
                                         <Collapsible
                                             key={module.module_id}
                                             moduleDescription={module.module_description}
