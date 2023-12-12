@@ -1,5 +1,7 @@
 {
-      "editor.fontSize": 14,
+    "editor.fontSize": 14,
     "files.autoSave": "afterDelay",
-    "editor.fontFamily": "Menlo"
+    "editor.fontFamily": "Menlo",
+    "workbench.colorTheme": "GrunBoxTheme",
+    
 }

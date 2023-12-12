@@ -4,6 +4,10 @@ import "../styles/global.css"
 import ToDo from "./ToDo"
 
 
+/**
+ * Renders the right side component.
+ * @returns {JSX.Element} The rendered right side component.
+ */
 function RightSide(){
     return(
         <div className="right-side">

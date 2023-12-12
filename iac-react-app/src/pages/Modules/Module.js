@@ -9,11 +9,17 @@ import RightSide from "../../components/RightSide";
 import TextSpeech from "../../components/TextSpeech";
 import VideoPlayer from "../../components/VideoPlayer";
 import FileViewer from "../../components/FileViewer";
+import { fetchModuleFile } from "../../services/services";
 
 
+/**
+ * Represents a module component.
+ *
+ * @returns {JSX.Element} The module component.
+ */
 function Module() {
     const token = JSON.parse(localStorage.getItem('token'))
-    const { courseID } = useParams()
+    const { course_id } = useParams()
     const { file_id } = useParams()
     const [file_url, setFileUrl] = useState();
     const [file_name, setFileName] = useState();
@@ -24,26 +30,26 @@ function Module() {
     }
 
     useEffect(() => {
-        const fetchFile = async () => {
-            try {
-                const response = await fetch(`http://localhost:8080/api/files/${file_id}/`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Token ' + token
-                    },
-                });
-                const data = await response.json();
-                console.log("file id")
-                setFileUrl(data.file)
-                setFileName(data.name)
-                setFileType(data.file_type)
-            } catch (error) {
-                console.error('Error fetching file', error);
-            }
-        };
+        // const fetchFile = async () => {
+        //     try {
+        //         const response = await fetch(`http://localhost:8080/api/files/${file_id}/`, {
+        //             method: 'GET',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'Authorization': 'Token ' + token
+        //             },
+        //         });
+        //         const data = await response.json();
+        //         console.log("file id")
+        //         setFileUrl(data.file)
+        //         setFileName(data.name)
+        //         setFileType(data.file_type)
+        //     } catch (error) {
+        //         console.error('Error fetching file', error);
+        //     }
+        // };
 
-        fetchFile();
+        fetchModuleFile(file_id, token, setFileUrl, setFileName, setFileType);
     }, [file_id]);
 
     return (
@@ -51,7 +57,7 @@ function Module() {
             <div className="iac-layout-columns">
                 <div className="iac-main-app-content">
                     <Sidemenu
-                        courseID={courseID}
+                        course_id={course_id}
                     />
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">

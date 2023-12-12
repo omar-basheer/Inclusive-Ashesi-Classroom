@@ -6,6 +6,11 @@ import Sidemenu from "../components/Sidemenu";
 import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
 
+/**
+ * Renders the Screening page.
+ * 
+ * @returns {JSX.Element} The JSX element representing the Screening page.
+ */
 function Screening() {
     const Title = "Screening Form"
     const richContent = `                   

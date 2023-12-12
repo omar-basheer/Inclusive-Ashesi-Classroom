@@ -8,9 +8,15 @@ import "../styles/header.css"
 import CourseTray from './CourseTray';
 
 
+/**
+ * Renders the header component.
+ *
+ * @returns {JSX.Element} The header component.
+ */
 function Header() {
 
     const authContext = useContext(AuthContext);
+    const [isCourseMenuOpen, setCourseMenuOpen] = useState(false)
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -22,8 +28,6 @@ function Header() {
         }
     };
     
-    const [isCourseMenuOpen, setCourseMenuOpen] = useState(false)
-
     const handleIconClick = () => {
         setCourseMenuOpen(!isCourseMenuOpen)
     }

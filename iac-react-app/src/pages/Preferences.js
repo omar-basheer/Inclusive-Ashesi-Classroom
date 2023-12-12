@@ -9,8 +9,15 @@ import RightSide from "../components/RightSide";
 import { useState, useEffect } from 'react';
 import AutoAidOption from "../components/AutoAidOption";
 import ProfileEdit from "../components/ProfileEdit";
+import { fetchStudentData } from "../services/services";
 // import { useAuth } from "./auth/AuthProvider";
 
+/**
+ * Represents the Preferences page component.
+ *
+ * @component
+ * @returns {JSX.Element} The Preferences page component.
+ */
 function Preferences() {
 
 	const token = JSON.parse(localStorage.getItem('token'))
@@ -24,28 +31,28 @@ function Preferences() {
 	console.log(student_id)
 
 	useEffect(() => {
-		const fetchStudentData = async () => {
-			try {
-				const response = await fetch(`http://localhost:8080/api/students/get/${student_id}/`, {
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-						'Authorization': 'Token ' + token
-					},
-				})
-				if (!response.ok) {
-					console.log("student fetch error: failed to fetch student data")
-					return
-				}
-				const data = await response.json();
-				setInfo(data);
-				localStorage.setItem('info', JSON.stringify(info));
-			} catch (error) {
-				console.error('Error fetching student data:', error);
-			}
-		};
+		// const fetchStudentData = async () => {
+		// 	try {
+		// 		const response = await fetch(`http://localhost:8080/api/students/get/${student_id}/`, {
+		// 			method: 'GET',
+		// 			headers: {
+		// 				'Content-Type': 'application/json',
+		// 				'Authorization': 'Token ' + token
+		// 			},
+		// 		})
+		// 		if (!response.ok) {
+		// 			console.log("student fetch error: failed to fetch student data")
+		// 			return
+		// 		}
+		// 		const data = await response.json();
+		// 		setInfo(data);
+		// 		localStorage.setItem('info', JSON.stringify(info));
+		// 	} catch (error) {
+		// 		console.error('Error fetching student data:', error);
+		// 	}
+		// };
 
-		fetchStudentData();
+		fetchStudentData(student_id, token, setInfo);
 	}, [student_id, token, info]);
 
 	const Title = "System Preferences"

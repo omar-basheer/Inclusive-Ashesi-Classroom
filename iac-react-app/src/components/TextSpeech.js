@@ -2,6 +2,11 @@ import React from 'react';
 import Speech from 'react-text-to-speech';
 import "../styles/global.css"
 
+/**
+ * Renders a TextSpeech component.
+ *
+ * @returns {JSX.Element} The rendered TextSpeech component.
+ */
 function TextSpeech() {
     const startBtn = <button className='btn button-sidebar-wide'>Start Speech</button>
     const pauseBtn = <button className='btn button-sidebar-wide'>Pause Speech</button>

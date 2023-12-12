@@ -41,7 +41,7 @@ function TextModule() {
             <div className="iac-layout-columns">
                 <div className="iac-main-app-content">
                     <Sidemenu
-                        courseID={courseID}
+                        course_id={courseID}
                     />
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">

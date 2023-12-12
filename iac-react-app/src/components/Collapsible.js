@@ -30,8 +30,16 @@ function getFileTypeIcon(fileType) {
 }
 
 
+/**
+ * Renders a collapsible module component.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.moduleDescription - The description of the module.
+ * @param {Array} props.files - The array of files associated with the module.
+ * @returns {JSX.Element} The rendered Collapsible component.
+ */
 function Collapsible({ moduleDescription, files }) {
-    const { courseID } = useParams();
+    const { course_id } = useParams();
 
     const getModuleType = (fileType) => {
         // Map file types to module types
@@ -72,7 +80,7 @@ function Collapsible({ moduleDescription, files }) {
                                     <div className='item-title'>
                                         <span className='item-name'>
                                             {/* <Link className='item' to={`/${courseID}/Modules/${getModuleType(file.file_type)}/${file.file_id}`}> */}
-                                            <Link className='item' to={`/${courseID}/Modules/${file.file_id}`}>
+                                            <Link className='item' to={`/${course_id}/Modules/${file.file_id}`}>
                                                 {file.name}
                                             </Link>
                                         </span>

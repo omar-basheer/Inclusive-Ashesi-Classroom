@@ -3,6 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 import "../styles/global.css"
 import "../styles/crumbs.css"
 
+/**
+ * Renders a breadcrumb navigation component based on the current location.
+ * @returns {JSX.Element} The Crumbs component.
+ */
 function Crumbs() {
     const location = useLocation();
     const pathSegments = location.pathname.split('/').filter((segment) => segment !== '');
