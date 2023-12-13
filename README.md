@@ -1,5 +1,7 @@
 # Inclusive-Ashesi-Classroom
-This project ...
+This project seeks to establish a base level of inclusiveness for future/current students of Ashesi University, specifically those with Dyslexia. This Dyslexic Student Support System will be a specialized component made just for dyslexic students. This module will be designed to facilitate easy access to course materials while ensuring they are presented in a way that meets each student's individual learning needs. Through the implementation of a system that incorporates these subsystems, the project hopes to enhance the educational experience of students in Ashesi with dyslexia.
+
+
 
 ## Technologies and Justification
 ### 1. Django Framework
