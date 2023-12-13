@@ -1,4 +1,6 @@
 # Inclusive-Ashesi-Classroom
+This project ...
+
 ## Technologies and Justification
 ### 1. Django Framework
 - Django is a popular Python-based framework that is normally used for building web applications. It provides pre-built components and conventions, which simplifies the web app development process and allows developers to focus on writing their application’s specific logic rather than dealing with repetitive tasks. Basically, it’s all about reusability. 
