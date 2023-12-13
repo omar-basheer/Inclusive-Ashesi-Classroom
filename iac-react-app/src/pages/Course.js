@@ -22,7 +22,7 @@ function Course() {
     const [courseTitle, setCourseTitle] = useState('');
     const [homeContent, setHomeContent] = useState('');
 
-    console.log(courseID)
+    console.log(course_id)
     // Redirect to login page if not logged in
     if (token == null) {
         window.history.replaceState(null, '', '/Login');

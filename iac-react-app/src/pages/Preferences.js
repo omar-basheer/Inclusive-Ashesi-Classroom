@@ -32,28 +32,7 @@ function Preferences() {
 	console.log(student_id)
 
 	useEffect(() => {
-		// const fetchStudentData = async () => {
-		// 	try {
-		// 		const response = await fetch(`http://localhost:8080/api/students/get/${student_id}/`, {
-		// 			method: 'GET',
-		// 			headers: {
-		// 				'Content-Type': 'application/json',
-		// 				'Authorization': 'Token ' + token
-		// 			},
-		// 		})
-		// 		if (!response.ok) {
-		// 			console.log("student fetch error: failed to fetch student data")
-		// 			return
-		// 		}
-		// 		const data = await response.json();
-		// 		setInfo(data);
-		// 		localStorage.setItem('info', JSON.stringify(info));
-		// 	} catch (error) {
-		// 		console.error('Error fetching student data:', error);
-		// 	}
-		// };
-
-		fetchStudentData(student_id, token, setInfo);
+		fetchStudentData(student_id, token, info, setInfo);
 	}, [student_id, token, info]);
 
     const Title = "System Preferences"

@@ -9,7 +9,7 @@
  * @param {Function} navigate - The navigate function.
  * @returns {void}
  */
-export const handleLogin = async (e, email, password, login, navigate) => {
+export const handleLogin = async (e, email, password, login, navigate, setShowAlert) => {
     e.preventDefault();
 
     try {
@@ -23,7 +23,7 @@ export const handleLogin = async (e, email, password, login, navigate) => {
 
         if (!response.ok) {
             console.log("login request error: login failed")
-            alert("Incorrect login info")
+            setShowAlert(true)
             return
         }
         const data = await response.json()
