@@ -231,3 +231,32 @@ export const fetchModuleFile = async (file_id, token, setFileUrl, setFileName, s
         console.error('Error fetching file', error);
     }
 };
+
+
+/**
+ * Fetches module HTML content from the server. This is used for the lesson content.
+ * 
+ * @param {string} lesson_id - The ID of the lesson.
+ * @param {string} token - The authentication token.
+ * @param {function} setLessonTitle - The function to set the lesson title.
+ * @param {function} setLessonContent - The function to set the lesson content.
+ * @returns {Promise<void>} - A promise that resolves when the module HTML content is fetched and the lesson title and content are set.
+ */
+export const fetchModuleLesson = async (lesson_id, token, setLessonTitle, setLessonContent) => {
+    try {
+        const response = await fetch(`http://localhost:8080/api/lessons/${lesson_id}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + token
+            },
+        });
+        const data = await response.json();
+        setLessonTitle(data.lesson_name);
+        setLessonContent(data.lesson_content);
+        console.log(data)
+    } catch (error) {
+        console.error('Error fetching lesson data:', error);
+    }
+
+}

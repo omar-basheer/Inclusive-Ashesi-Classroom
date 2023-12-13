@@ -19,21 +19,6 @@ function CourseTray({closeTray }) {
     const token = JSON.parse(localStorage.getItem('token'))
 
     useEffect(() => {
-        // const fetchCourseData = async () => {
-        //     try {
-        //         const response = await fetch(`http://localhost:8080/api/students/courses/${student_id}/`,{
-        //             method: 'GET',
-        //             headers: {
-        //                 'Content-Type': 'application/json',
-        //                 'Authorization': 'Token ' + token
-        //             },
-        //         })
-        //         const data = await response.json();
-        //         setCourses(data);
-        //     } catch (error) {
-        //         console.error('Error fetching courses:', error);
-        //     }
-        // };
         fetchStudentCourseData(student_id, token, setCourses);
     }, []);
 

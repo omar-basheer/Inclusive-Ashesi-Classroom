@@ -14,7 +14,6 @@ import { fetchStudentData } from '../services/services';
  * @returns {JSX.Element} The rendered Dashboard component.
  */
 function Dashboard() {
-	// const { user } = useContext(AuthContext)
 	const student_id = JSON.parse(localStorage.getItem('student_id'))
 	const token = JSON.parse(localStorage.getItem('token'))
 	const [info, setInfo] = useState("")
@@ -24,29 +23,7 @@ function Dashboard() {
 		window.location.reload();
 	}
 
-    useEffect(() => {
-        // const fetchStudentData = async () => {
-        //     try {
-        //         const response = await fetch(`http://localhost:8080/api/students/get/${student_id}/`,{
-        //             method: 'GET',
-        //             headers: {
-        //                 'Content-Type': 'application/json',
-        //                 'Authorization': 'Token ' + token
-        //             },
-        //         })
-        //         if (!response.ok) {
-        //             console.log("student fetch error: failed to fetch student data")
-        //             return
-        //         }
-        //         const data = await response.json();
-        //         setInfo(data);
-        //         localStorage.setItem('info', JSON.stringify(info));
-        //         console.log(info)
-        //     } catch (error) {
-        //         console.error('Error fetching student data:', error);
-        //     }
-        // };
-
+	useEffect(() => {
 		fetchStudentData(student_id, token, info, setInfo);
 	}, [student_id, token, info]);
 

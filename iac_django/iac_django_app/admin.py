@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from .models import Student, Course, Module, File, Enrollment, Lesson
+from .models import Student, Course, Module, File, Enrollment, Lesson
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = ['email', 'first_name', 'last_name', 'student_id', 'is_staff', 'is_superuser']
@@ -21,7 +22,7 @@ class LessonInline(admin.TabularInline):
 
 class ModuleAdmin(admin.ModelAdmin):
     list_display = ['module_id', 'course', 'week', 'module_description']
-    inlines = [FileInline, LessonInline ]
+    inlines = [FileInline]
 
 class FileAdmin(admin.ModelAdmin):
     list_display = ['file_id', 'module_id', 'module_course', 'module_week', 'name', 'file_type', 'file']
@@ -39,10 +40,8 @@ class FileAdmin(admin.ModelAdmin):
     module_course.admin_order_field = 'module__course'
     module_week.admin_order_field = 'module__week'
 
-
 class LessonAdmin(admin.ModelAdmin):
-    list_display = ['lesson_id', 'module', 'lesson_name', 'lesson_file_type']
-
+    list_display = ['lesson_id', 'module_id', 'module_course', 'module_week', 'lesson_name', 'lesson_file_type']
 
     def module_id(self, obj):
         return obj.module.module_id

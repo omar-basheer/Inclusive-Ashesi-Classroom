@@ -6,12 +6,12 @@ from django.contrib.auth import authenticate, login
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny
-from .models import Student, Course, Module, File, Enrollment
+from .models import Student, Course, Module, File, Enrollment, Lesson
 from django.contrib.auth import get_user_model
 from django.http import FileResponse, HttpResponse
 from django.shortcuts import get_object_or_404
-# from .serializers import FileSerializer, StudentSerializer, CourseSerializer, EnrollmentSerializer, ModuleSerializer, AllFileSerializer, CourseLinksSerializer
-from .serializers import *
+from .serializers import FileSerializer, StudentSerializer, CourseSerializer, EnrollmentSerializer, ModuleSerializer, AllFileSerializer, CourseLinksSerializer, AllLessonSerializer, LessonSerializer
+
 """
 Classes for Student signup and login
 """
@@ -147,14 +147,12 @@ class GetModulesView(APIView):
                 file_data = AllFileSerializer(files, many=True).data
 
                 # Get all lessons associated with the module
-                lessons= Lesson.objects.filter(module=module)
+                lessons = Lesson.objects.filter(module=module)
                 lesson_data = AllLessonSerializer(lessons, many=True).data
 
-               
-
-                # Add file & lesson data to the module data
-                module_serializer['lesson'] = lesson_data
+                # Add file data and lesson data to the module data
                 module_serializer['files'] = file_data
+                module_serializer['lessons'] = lesson_data
                 module_data.append(module_serializer)
 
             return Response(module_data, status=status.HTTP_200_OK)
@@ -166,20 +164,6 @@ class GetModulesView(APIView):
 class GetFileView(APIView):
     permission_classes = [IsAuthenticated]
 
-    # def get(self, request, file_id):
-    #     try:
-    #         file = File.objects.get(file_id=file_id)
-    #     except File.DoesNotExist:
-    #         return Response({"error": f"File with ID {file_id} not found."}, status=status.HTTP_404_NOT_FOUND)
-
-    #     # Assuming the 'file' field is a FileField
-    #     file_path = file.file.path
-
-    #     # Use Django's FileResponse to serve the file
-    #     response = FileResponse(open(file_path, 'rb'), content_type='application/octet-stream')
-    #     response['Content-Disposition'] = f'attachment; filename="{file.name}"'
-    #     return response
-
     def get(self, request, file_id):
         try:
             file = File.objects.get(file_id=file_id)
@@ -187,6 +171,20 @@ class GetFileView(APIView):
             return Response({"error": f"File with ID {file_id} not found."}, status=status.HTTP_404_NOT_FOUND)
         
         serializer = AllFileSerializer(file)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class GetLessonView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, lesson_id):
+        try:
+            lesson = Lesson.objects.get(lesson_id=lesson_id)
+        except Lesson.DoesNotExist:
+            return Response({"error": f"Lesson with ID {lesson_id} not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = LessonSerializer(lesson)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -211,16 +209,16 @@ class GetFileView(APIView):
     #         return HttpResponse(f"Error serving file: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+    # def get(self, request, file_id):
+    #     try:
+    #         file = File.objects.get(file_id=file_id)
+    #     except File.DoesNotExist:
+    #         return Response({"error": f"File with ID {file_id} not found."}, status=status.HTTP_404_NOT_FOUND)
 
-class GetLessonView(APIView):
-    permission_classes = [IsAuthenticated]
+    #     # Assuming the 'file' field is a FileField
+    #     file_path = file.file.path
 
-    def get(self, request, lesson_id):
-        try:
-            lesson = Lesson.objects.get(lesson_id=lesson_id)
-        except Lesson.DoesNotExist:
-            return Response({"error": f"Lesson with ID {lesson_id} not found."}, status=status.HTTP_404_NOT_FOUND)
-
-        serializer = LessonSerializer(lesson)
-
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    #     # Use Django's FileResponse to serve the file
+    #     response = FileResponse(open(file_path, 'rb'), content_type='application/octet-stream')
+    #     response['Content-Disposition'] = f'attachment; filename="{file.name}"'
+    #     return response

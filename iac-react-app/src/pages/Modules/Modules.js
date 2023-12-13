@@ -18,23 +18,6 @@ function Modules() {
     const [modules, setModules] = useState([]);
 
     useEffect(() => {
-        // const fetchCourseModules = async () => {
-        //     try {
-        //         const response = await fetch(`http://localhost:8080/api/courses/${course_id}/modules/`, {
-        //             method: 'GET',
-        //             headers: {
-        //                 'Content-Type': 'application/json',
-        //                 'Authorization': 'Token ' + token
-        //             },
-        //         });
-        //         const data = await response.json();
-        //         console.log(data)
-        //         setModules(data);
-        //     } catch (error) {
-        //         console.error('Error fetching modules data', error);
-        //     }
-        // };
-
         fetchCourseModules(course_id, token, setModules);
     }, [course_id]);
 
@@ -55,6 +38,7 @@ function Modules() {
                                             key={module.module_id}
                                             moduleDescription={module.module_description}
                                             files={module.files}
+                                            lessons={module.lessons}
                                         />
                                     ))}
                                 </div>
