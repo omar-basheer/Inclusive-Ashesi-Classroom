@@ -1,7 +1,3 @@
-/**
- * Represents the Screening page component.
- * @component
- */
 import React from "react";
 import '../styles/global.css'
 import '../styles/right_side.css'
@@ -9,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import Sidemenu from "../components/Sidemenu";
 import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
-
 
 function Screening() {
     const Title = "Screening Form";
@@ -19,17 +14,110 @@ function Screening() {
     // Function to handle fetching data from the Google Spreadsheet
     const fetchDataFromSpreadsheet = async () => {
         try {
-            // Fetch data from the Google Spreadsheet
+            const response = await fetch('https://sheetdb.io/api/v1/furjhzg2u7fjt/search?StudentID=50502024');
+            const data = await response.json();
 
-            fetch('https://sheetdb.io/api/v1/h3yuvplnjy1gs')
-            .then((response) => response.json())
-            .then((data) => console.log(data));
+            // Check if data is available
+            if (data && data.length > 0) {
+                const challenges = data[0]["Do you experience any challenges with the following? (Select as many that apply)"];
+                const challengesArray = challenges.split(',').map(item => item.trim());
 
-            
+                // Use challengesArray to generate recommendations
+                const recommendations = generateRecommendations(challengesArray);
+                console.log('Recommendations:', recommendations);
+            } else {
+                console.log('No data found.');
+            }
+
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
+
+    // Function to generate recommendations based on challenges
+    const generateRecommendations = (challengesArray) => {
+        const recommendations = [];
+
+         // Helper function to add a feature to recommendations
+        const addFeature = (challenge, feature) => {
+        if (!recommendations[challenge]) {
+            recommendations[challenge] = [feature];
+        } else if (!recommendations[challenge].includes(feature)) {
+            recommendations[challenge].push(feature);
+        }
+    };
+    
+    if (challengesArray.includes('Difficulty sustaining attention in tasks')) {
+        addFeature(recommendations, 'Text-to-Speech');
+        addFeature(recommendations, 'Lesson Summarizer');
+    }
+
+    if (challengesArray.includes('Frequent careless mistakes in schoolwork')) {
+        addFeature(recommendations, 'Text-to-Speech');
+        addFeature(recommendations, 'Closed Captions');
+    }
+
+    if (challengesArray.includes('Avoiding or strongly disliking tasks that require sustained mental effort')) {
+        addFeature(recommendations, 'Lesson Summarizer');
+        addFeature(recommendations, 'Closed Captions');
+    }
+
+    if (challengesArray.includes('Fidgeting with hands or feet or squirming in one\'s seat')) {
+        addFeature(recommendations, 'Lesson Summarizer');
+        addFeature(recommendations, 'Closed Captions');
+    }
+
+    if (challengesArray.includes('Inability to remain seated in situations where it is expected')) {
+        addFeature(recommendations, 'Lesson Summarizer');
+        addFeature(recommendations, 'Closed Captions');
+    }
+
+    if (challengesArray.includes('Difficulty waiting one\'s turn')) {
+        addFeature(recommendations, 'Lesson Summarizer');
+        addFeature(recommendations, 'Closed Captions');
+    }
+
+    if (challengesArray.includes('Blurting out answers before questions have been completed')) {
+        addFeature(recommendations, 'Lesson Summarizer');
+        addFeature(recommendations, 'Closed Captions');
+    }
+
+    if (challengesArray.includes('Difficulty recognizing and decoding words')) {
+        addFeature(recommendations, 'Text-to-Speech');
+        addFeature(recommendations, 'Lesson Summarizer');
+    }
+
+    if (challengesArray.includes('Frequent mispronunciation of words')) {
+        addFeature(recommendations, 'Text-to-Speech');
+        addFeature(recommendations, 'Closed Captions');
+    }
+
+    if (challengesArray.includes('Struggling to read aloud with accuracy and fluency.')) {
+        addFeature(recommendations, 'Text-to-Speech');
+        addFeature(recommendations, 'Lesson Summarizer');
+        addFeature(recommendations, 'Closed Captions');
+    }
+
+    if (challengesArray.includes('Frequent spelling errors, even with common words')) {
+        addFeature(recommendations, 'Text-to-Speech');
+        addFeature(recommendations, 'Closed Captions');
+    }
+
+    if (challengesArray.includes('Difficulty organizing thoughts in writing')) {
+        addFeature(recommendations, 'Lesson Summarizer');
+        addFeature(recommendations, 'Closed Captions');
+    }
+
+    if (challengesArray.includes('Poor handwriting')) {
+        addFeature(recommendations, 'Text-to-Speech');
+        addFeature(recommendations, 'Lesson Summarizer');
+        addFeature(recommendations, 'Closed Captions');
+    }
+
+    
+        return recommendations;
+    };
+    
 
     const formContent = `
         <h3>Hi there...</h3>
@@ -51,10 +139,10 @@ function Screening() {
     `;
 
     const buttonContent = (
-        <a class="btn2 button-sidebar-wide" onClick={fetchDataFromSpreadsheet}>
-                    <i class="icon-stats"></i>
-                    Complete Form Submission
-                </a>
+        <a className="btn2 button-sidebar-wide" onClick={fetchDataFromSpreadsheet}>
+            <i className="icon-stats"></i>
+            Complete Form Submission
+        </a>
     );
 
     return (

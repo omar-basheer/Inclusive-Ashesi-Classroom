@@ -123,7 +123,7 @@ export const fetchStudentData = async (student_id, token, info, setInfo) => {
         const data = await response.json();
         setInfo(data);
         localStorage.setItem('info', JSON.stringify(info));
-        console.log(info)
+        // console.log(info)
     } catch (error) {
         console.error('Error fetching student data:', error);
     }
@@ -196,7 +196,7 @@ export const fetchCourseModules = async (course_id, token, setModules) => {
             },
         });
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
         setModules(data);
     } catch (error) {
         console.error('Error fetching modules data', error);

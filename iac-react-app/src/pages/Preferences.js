@@ -28,8 +28,8 @@ function Preferences() {
     // Fetch student data
 	const student_id = JSON.parse(localStorage.getItem('student_id'))
 	const [info, setInfo] = useState("")
-	console.log(token)
-	console.log(student_id)
+	// console.log(token)
+	// console.log(student_id)
 
 	useEffect(() => {
 		fetchStudentData(student_id, token, info, setInfo);
