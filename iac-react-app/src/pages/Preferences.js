@@ -7,6 +7,7 @@ import Sidemenu from "../components/Sidemenu";
 import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
 import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import AutoAidOption from "../components/AutoAidOption";
 import ProfileEdit from "../components/ProfileEdit";
 import { fetchStudentData } from "../services/services";
@@ -35,12 +36,13 @@ function Preferences() {
 		fetchStudentData(student_id, token, info, setInfo);
 	}, [student_id, token, info]);
 
-    const Title = "System Preferences"
+	const Title = "System Preferences"
 
     // const richContent = "This is the rich content for the page.
     const [expandedState, setExpandedState] = useState(new Array(4).fill(false));
     const [arrowDirection, setArrowDirection] = useState(new Array(4).fill("down"));
     const [isSwitched, setIsSwitched] = useState(new Array(4).fill(false));
+
 
 	const handleExpandToggleClick = (index) => {
 		const newExpandedState = [...expandedState];

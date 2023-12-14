@@ -111,12 +111,20 @@ class File(models.Model):
     file_type = models.CharField(max_length=10)
     file = models.FileField(upload_to='files/')
 
-
-
-
 class Lesson(models.Model):
+    """
+    Represents a lesson in the system.
+
+    Attributes:
+        lesson_id (str): The unique identifier for the lesson.
+        module (Module): The module that the lesson belongs to.
+        lesson_name (str): The name of the lesson.
+        file_type (CharField): The type of the file.
+        lesson_description (str): The content of the lesson.
+    """
     lesson_id = models.AutoField(primary_key=True)
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
-    lesson_name = models.CharField(max_length=255)
-    lesson_content = models.TextField()
+    lesson_name = models.CharField(max_length=100)
     lesson_file_type = models.CharField(max_length=10)
+    lesson_content = models.TextField()
+

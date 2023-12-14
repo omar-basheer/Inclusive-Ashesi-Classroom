@@ -14,9 +14,9 @@ import { fetchStudentData } from '../services/services';
  * @returns {JSX.Element} The rendered Dashboard component.
  */
 function Dashboard() {
-  const student_id = JSON.parse(localStorage.getItem('student_id'));
-  const token = JSON.parse(localStorage.getItem('token'));
-  const [info, setInfo] = useState('');
+	const student_id = JSON.parse(localStorage.getItem('student_id'))
+	const token = JSON.parse(localStorage.getItem('token'))
+	const [info, setInfo] = useState("")
 
   if (token === null) {
     window.history.replaceState(null, '', '/Login');

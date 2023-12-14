@@ -26,7 +26,8 @@ function App() {
                     <Route path="/Dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                     <Route path="/:course_id" element={<ProtectedRoute><Course /></ProtectedRoute>} />
                     <Route path="/:course_id/Modules" element={<ProtectedRoute><Modules /></ProtectedRoute>} />
-                    <Route path="/:course_id/Modules/:file_id" element={<ProtectedRoute><Module /></ProtectedRoute>} />
+                    <Route path="/:course_id/Modules/file/:file_id" element={<ProtectedRoute><Module /></ProtectedRoute>} />
+                    <Route path="/:course_id/Modules/lesson/:lesson_id" element={<ProtectedRoute><Module /></ProtectedRoute>} />
                     <Route path="/Preferences" element={<ProtectedRoute><Preferences /></ProtectedRoute>} />
                     <Route path="/Screening" element={<ProtectedRoute><Screening /></ProtectedRoute>} />
                 </Route>

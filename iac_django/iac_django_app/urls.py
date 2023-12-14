@@ -1,7 +1,8 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import *
+from .views import GetFileView, GetModulesView, GetStudentInfoView, RegisterStudentView, LoginStudentView, DeleteStudentView, GetStudentCoursesView, GetCourseDetailsView,GetLessonView
+
 
 urlpatterns = [
     path('students/signup/', RegisterStudentView.as_view(), name='signup'),
