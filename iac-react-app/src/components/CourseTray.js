@@ -1,34 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { fetchCourseData } from '../services/user_courses';
+import { fetchStudentCourseData } from '../services/services';
 import "../styles/global.css"
 import "../styles/course_tray.css"
 // import { useAuth } from '../pages/auth/AuthProvider';
 
 
+/**
+ * CourseTray component displays a tray containing a list of courses.
+ * 
+ * @param {Object} props - The component props.
+ * @param {Function} props.closeTray - The function to close the tray.
+ * @returns {JSX.Element} The CourseTray component.
+ */
 function CourseTray({closeTray }) {
     const [courses, setCourses] = useState([]);
     const student_id = JSON.parse(localStorage.getItem('student_id'))
     const token = JSON.parse(localStorage.getItem('token'))
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`http://localhost:8080/api/students/courses/${student_id}/`,{
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Token ' + token
-                    },
-                })
-                const data = await response.json();
-                setCourses(data);
-            } catch (error) {
-                console.error('Error fetching courses:', error);
-            }
-        };
-        fetchData();
+        fetchStudentCourseData(student_id, token, setCourses);
     }, []);
 
     const handleCourseLinkClick = () => {

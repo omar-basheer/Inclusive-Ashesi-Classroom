@@ -2,6 +2,10 @@ import React from "react";
 import "../styles/global.css"
 import "../styles/todo.css"
 
+/**
+ * Renders a ToDo component.
+ * @returns {JSX.Element} The rendered ToDo component.
+ */
 function ToDo() {
     return (
         <div className="event-list">

@@ -2,6 +2,14 @@ import React from "react";
 import "../styles/global.css"
 import "../styles/page_content.css"
 
+/**
+ * Renders the content of a page.
+ * 
+ * @param {Object} props - The component props.
+ * @param {string} props.contentTitle - The title of the content.
+ * @param {string} props.richContent - The rich content to be displayed.
+ * @returns {JSX.Element} The rendered page content.
+ */
 function PageContent({contentTitle, richContent}){
     return(
         <div className="course-home-content">

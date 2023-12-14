@@ -39,10 +39,8 @@ class FileAdmin(admin.ModelAdmin):
     module_course.admin_order_field = 'module__course'
     module_week.admin_order_field = 'module__week'
 
-
 class LessonAdmin(admin.ModelAdmin):
     list_display = ['lesson_id', 'module', 'lesson_name', 'lesson_file_type']
-
 
     def module_id(self, obj):
         return obj.module.module_id

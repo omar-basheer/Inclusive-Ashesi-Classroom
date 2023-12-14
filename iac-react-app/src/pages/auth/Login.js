@@ -1,17 +1,42 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext, useAuth } from './AuthProvider'
-import { fakeAuth, handleLogin } from '../../services/user_auth'
 import '../../styles/auth.css'
+import { handleLogin } from "../../services/services";
 
+/**
+ * Renders the login page.
+ * @returns {JSX.Element} The login page component.
+ */
 function Login() {
     const navigate = useNavigate();
     const { login } = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [loginError, setLoginError] = useState(false)
+
+    // const onLoginSuccess = (token, studentId) => {
+    //     login(token, studentId);
+    //     navigate('/Dashboard');
+    // };
+
+    // const onLoginError = () => {
+    //     setLoginError(true);
+    // };
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     await handleLogin(email, password, onLoginSuccess, onLoginError);
+    // }
 
     return (
         <div className="login-container">
+            {/* <div className="flash-message-container" aria-hidden="true">
+                <div class="ic-flash__icon">
+                    <i class="icon-warning"></i>
+                </div>
+                Invalid username or password. Trouble logging in? <a href="https://community.canvaslms.com/docs/DOC-25242-955611231352">Check out our Login FAQs</a>.
+            </div> */}
             <div className="login-top">
                 <div className="login-form container">
                     <div className="login-content">
@@ -54,7 +79,6 @@ function Login() {
                             <div className="login-footer__links">
                                 <a className="flink" href="http://help.instructure.com/">Help</a>
                                 <a className="flink" href="https://ashesi.instructure.com/privacy_policy">Privacy Policy</a>
-                                {/* <a className="flink" href="https://ashesi.instructure.com/privacy_policy">Acceptable Use Policy</a> */}
                                 <a className="flink" href="http://help.instructure.com/">Facebook</a>
                                 <a className="flink" href="https://ashesi.instructure.com/privacy_policy">Twitter</a>
                             </div>

@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import "../styles/global.css"
 import "../styles/sidemenu.css"
 
-function Sidemenu({courseID}) {
+/**
+ * Renders a side menu component for a specific course.
+ * @param {Object} props - The component props.
+ * @param {string} props.course_id - The ID of the course.
+ * @returns {JSX.Element} The rendered side menu component.
+ */
+function Sidemenu({course_id}) {
     return (
         <div className="left-side-page-menu">
             <div className="sticky-menu">
@@ -18,7 +24,7 @@ function Sidemenu({courseID}) {
                             <a className="section-link" href="">Announcements</a>
                         </li>
                         <li className="section">
-                            <Link to={`/${courseID}/Modules`} className="section-link">
+                            <Link to={`/${course_id}/Modules`} className="section-link">
                                 Modules
                             </Link>
                         </li>
@@ -44,8 +50,8 @@ function Sidemenu({courseID}) {
     )
 }
 
-Sidemenu.propTypes = {
-    courseID: PropTypes.string.isRequired
-};
+// Sidemenu.propTypes = {
+//     course_id: PropTypes.string.isRequired
+// };
 
 export default Sidemenu

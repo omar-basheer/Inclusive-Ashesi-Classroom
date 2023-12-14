@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { fakeAuth, handleSignUp } from '../../services/user_auth'
+import { fakeAuth, handleSignUp } from '../../services/services'
 import '../../styles/auth.css'
 
+/**
+ * Renders the SignUp component.
+ * 
+ * @returns {JSX.Element} The SignUp component.
+ */
 function SignUp() {
     const navigate = useNavigate();
     const [student_id, setStudentId] = useState('');

@@ -14,6 +14,10 @@ import '../../node_modules/video-react/dist/video-react.css'
 // import video from '../../../iac-backend/iac_django/media/files/VIDEO-2023-12-04-21-45-01.mp4'
 import video from '../../src/test_media/VIDEO-2023-12-04-21-45-01.mp4'
 
+/**
+ * Renders a video player component.
+ * @returns {JSX.Element} The video player component.
+ */
 function VideoPlayer() {
     return (
         <div className='player-container'>

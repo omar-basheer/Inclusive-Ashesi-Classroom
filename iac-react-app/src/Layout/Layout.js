@@ -6,6 +6,10 @@ import { Outlet } from "react-router-dom";
 import Breadcrumbs from "../components/Crumbs";
 import Sidemenu from "../components/Sidemenu";
 
+/**
+ * Renders the layout of the application.
+ * @returns {JSX.Element} The layout component.
+ */
 function Layout(){
     return(
         <div className="layout-wrapper">

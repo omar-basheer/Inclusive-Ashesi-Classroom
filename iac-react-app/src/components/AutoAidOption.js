@@ -2,6 +2,18 @@ import React from 'react';
 import '../styles/global.css'
 import '../styles/preferences.css'
 
+/**
+ * Represents an AutoAidOption component.
+ * @param {Object} props - The component props.
+ * @param {string} props.summary - The summary text.
+ * @param {string} props.expandableText - The expandable text.
+ * @param {boolean} props.expanded - Indicates if the component is expanded.
+ * @param {string} props.arrowDirection - The direction of the arrow icon.
+ * @param {function} props.handleExpandToggleClick - The click event handler for expanding/collapsing the component.
+ * @param {boolean} props.isSwitched - Indicates if the switch button is switched on.
+ * @param {function} props.handleAccessibilitySwitch - The click event handler for the switch button.
+ * @returns {JSX.Element} The AutoAidOption component.
+ */
 function AutoAidOption ({ 
   summary,
   expandableText,

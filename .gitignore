@@ -13,8 +13,9 @@ iac-react-app/node_modules/
 .iac-react-app/node_modules/.cache/default-development
 /iac-react-app/node_modules/.cache/default-development
 
+node_modules/
 # Ignore virtual environment
-/djangoenv/
+djangoenv/
 /.vscode/
 
 db.sqlite3

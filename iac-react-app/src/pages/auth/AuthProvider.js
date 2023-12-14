@@ -4,6 +4,13 @@ import '../../styles/auth.css';
 
 const AuthContext = createContext();
 
+/**
+ * AuthProvider component provides authentication functionality to its children components.
+ *
+ * @param {Object} props - The component props.
+ * @param {ReactNode} props.children - The child components to be wrapped by AuthProvider.
+ * @returns {ReactNode} The wrapped child components with authentication context.
+ */
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
