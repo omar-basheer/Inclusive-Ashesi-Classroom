@@ -10,8 +10,8 @@ from .models import Student, Course, Module, File, Enrollment
 from django.contrib.auth import get_user_model
 from django.http import FileResponse, HttpResponse
 from django.shortcuts import get_object_or_404
-from .serializers import FileSerializer, StudentSerializer, CourseSerializer, EnrollmentSerializer, ModuleSerializer, AllFileSerializer, CourseLinksSerializer
-
+# from .serializers import FileSerializer, StudentSerializer, CourseSerializer, EnrollmentSerializer, ModuleSerializer, AllFileSerializer, CourseLinksSerializer
+from .serializers import *
 """
 Classes for Student signup and login
 """
@@ -146,7 +146,14 @@ class GetModulesView(APIView):
                 files = File.objects.filter(module=module)
                 file_data = AllFileSerializer(files, many=True).data
 
-                # Add file data to the module data
+                # Get all lessons associated with the module
+                lessons= Lesson.objects.filter(module=module)
+                lesson_data = AllLessonSerializer(lessons, many=True).data
+
+               
+
+                # Add file & lesson data to the module data
+                module_serializer['lesson'] = lesson_data
                 module_serializer['files'] = file_data
                 module_data.append(module_serializer)
 
@@ -202,3 +209,18 @@ class GetFileView(APIView):
     #             return response
     #     except Exception as e:
     #         return HttpResponse(f"Error serving file: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+class GetLessonView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, lesson_id):
+        try:
+            lesson = Lesson.objects.get(lesson_id=lesson_id)
+        except Lesson.DoesNotExist:
+            return Response({"error": f"Lesson with ID {lesson_id} not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = LessonSerializer(lesson)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)

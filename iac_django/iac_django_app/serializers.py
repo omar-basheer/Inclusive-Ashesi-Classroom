@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
 from rest_framework.authtoken.serializers import AuthTokenSerializer
-from .models import Student, Course, Enrollment, Module, File
+from .models import Student, Course, Enrollment, Module, File, Lesson
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,3 +44,13 @@ class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
         fields = ['name', 'file']
+
+class AllLessonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lesson
+        fields = ['lesson_id', 'module', 'lesson_name', 'lesson_file_type']
+
+class LessonSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lesson
+        fields = ['lesson_name', 'lesson_content']

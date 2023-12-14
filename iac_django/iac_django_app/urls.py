@@ -1,7 +1,7 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import GetFileView, GetModulesView, GetStudentInfoView, RegisterStudentView, LoginStudentView, DeleteStudentView, GetStudentCoursesView, GetCourseDetailsView
+from .views import *
 
 urlpatterns = [
     path('students/signup/', RegisterStudentView.as_view(), name='signup'),
@@ -12,6 +12,7 @@ urlpatterns = [
     path('courses/<str:course_id>/', GetCourseDetailsView.as_view(), name='get'),
     path('courses/<str:course_id>/modules/', GetModulesView.as_view(), name='get'),
     path('files/<str:file_id>/', GetFileView.as_view(), name='get'),
+    path('lessons/<str:lesson_id>/', GetLessonView.as_view(), name='get'),
 ]
 
 if settings.DEBUG:
