@@ -7,7 +7,6 @@ import Sidemenu from "../components/Sidemenu";
 import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
 import { useState, useEffect } from 'react';
-import { useState, useEffect } from 'react';
 import AutoAidOption from "../components/AutoAidOption";
 import ProfileEdit from "../components/ProfileEdit";
 import { fetchStudentData } from "../services/services";
