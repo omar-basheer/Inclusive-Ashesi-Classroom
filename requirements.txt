@@ -6,3 +6,4 @@ pyodbc
 mysqlclient
 pymysql
 python-dotenv
+react-modal

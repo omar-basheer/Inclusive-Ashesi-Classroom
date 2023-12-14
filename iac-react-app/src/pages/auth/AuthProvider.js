@@ -27,7 +27,7 @@ function AuthProvider({ children }) {
     setUser(null);
   
     // Replace the entire history with the login page path
-    window.history.replaceState(null, '', '/');
+    window.history.replaceState(null, '', '/Login');
     alert("Logged out successfully!");
     
     // Reload the page to ensure the state is updated

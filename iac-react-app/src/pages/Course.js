@@ -11,6 +11,7 @@ import PageContent from "../components/PageContent";
 import RightSide from "../components/RightSide";
 import { fetchCourseData } from '../services/services';
 
+// Course page
 /**
  * Represents a Course component.
  * @returns {JSX.Element} The Course component.

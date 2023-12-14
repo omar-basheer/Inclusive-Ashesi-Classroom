@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { useNavigate } from 'react-router-dom';
 import { fakeAuth, handleSignUp } from '../../services/services'
 import '../../styles/auth.css'
@@ -16,9 +16,24 @@ function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [showAlert, setShowAlert] = useState(false)
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowAlert(false);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, [showAlert]);
 
     return (
         <div className="login-container">
+            {showAlert && (
+            <div className="flash-message-container" aria-hidden="true">
+                    <div class="ic-flash__icon">
+                        <i class="icon-warning"></i>
+                    </div>
+                    Student ID or Email already Exists. Please choose another.
+                </div>)}
             <div className="login-top">
                 <div className="login-form container">
                     <div className="login-content">
@@ -69,7 +84,8 @@ function SignUp() {
                                                 email,
                                                 password,
                                                 confirmPassword,
-                                                navigate
+                                                navigate,
+                                                setShowAlert
                                             )}></input>
                                         </div>
                                     </div>

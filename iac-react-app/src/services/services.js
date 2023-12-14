@@ -9,7 +9,7 @@
  * @param {Function} navigate - The navigate function.
  * @returns {void}
  */
-export const handleLogin = async (e, email, password, login, navigate) => {
+export const handleLogin = async (e, email, password, login, navigate, setShowAlert) => {
     e.preventDefault();
 
     try {
@@ -23,7 +23,7 @@ export const handleLogin = async (e, email, password, login, navigate) => {
 
         if (!response.ok) {
             console.log("login request error: login failed")
-            alert("Incorrect login info")
+            setShowAlert(true)
             return
         }
         const data = await response.json()
@@ -55,7 +55,7 @@ export const handleLogin = async (e, email, password, login, navigate) => {
  * @param {function} navigate - The function to navigate to a different screen.
  * @returns {Promise<void>} - A promise that resolves when the sign up process is complete.
  */
-export const handleSignUp = async (e, student_id, firstName, lastName, email, password, confirmPassword, navigate) => {
+export const handleSignUp = async (e, student_id, firstName, lastName, email, password, confirmPassword, navigate, setShowAlert) => {
     e.preventDefault();
 
     console.log('making api call...')
@@ -79,13 +79,15 @@ export const handleSignUp = async (e, student_id, firstName, lastName, email, pa
 
         if (response.ok) {
             if (response.status === 201) {
+                setShowAlert(true)
                 navigate('/Screening');
             }
             else {
                 console.error('Unexpected status code:', response.status);
             }
 
-        } else {
+        } else { 
+            setShowAlert(true) 
             // Display an error message or handle the failure
             console.error('Registration failed:', data.message);
         }
@@ -117,7 +119,7 @@ export const fetchStudentData = async (student_id, token, info, setInfo) => {
         const data = await response.json();
         setInfo(data);
         localStorage.setItem('info', JSON.stringify(info));
-        console.log(info)
+        // console.log(info)
     } catch (error) {
         console.error('Error fetching student data:', error);
     }
@@ -190,7 +192,7 @@ export const fetchCourseModules = async (course_id, token, setModules) => {
             },
         });
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
         setModules(data);
     } catch (error) {
         console.error('Error fetching modules data', error);

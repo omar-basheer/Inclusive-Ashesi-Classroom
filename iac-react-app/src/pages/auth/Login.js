@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext, useAuth } from './AuthProvider'
 import '../../styles/auth.css'
@@ -13,30 +13,24 @@ function Login() {
     const { login } = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [loginError, setLoginError] = useState(false)
+    const [showAlert, setShowAlert] = useState(false)
 
-    // const onLoginSuccess = (token, studentId) => {
-    //     login(token, studentId);
-    //     navigate('/Dashboard');
-    // };
-
-    // const onLoginError = () => {
-    //     setLoginError(true);
-    // };
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     await handleLogin(email, password, onLoginSuccess, onLoginError);
-    // }
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowAlert(false);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, [showAlert]);
 
     return (
         <div className="login-container">
-            {/* <div className="flash-message-container" aria-hidden="true">
-                <div class="ic-flash__icon">
-                    <i class="icon-warning"></i>
-                </div>
-                Invalid username or password. Trouble logging in? <a href="https://community.canvaslms.com/docs/DOC-25242-955611231352">Check out our Login FAQs</a>.
-            </div> */}
+            {showAlert && (
+                <div className="flash-message-container" aria-hidden="true">
+                    <div class="ic-flash__icon">
+                        <i class="icon-warning"></i>
+                    </div>
+                    Invalid username or password.
+                </div>)}
             <div className="login-top">
                 <div className="login-form container">
                     <div className="login-content">
@@ -47,7 +41,7 @@ function Login() {
                                 </div>
                             </div>
                             <div className="login-body">
-                                <form className="login_form" onSubmit={(e) => handleLogin(e, email, password, login, navigate)}>
+                                <form className="login_form" onSubmit={(e) => handleLogin(e, email, password, login, navigate, setShowAlert)}>
                                     <div className="form-control">
                                         <label className="form-label">Email</label>
                                         <input className="form-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />

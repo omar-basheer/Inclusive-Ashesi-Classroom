@@ -20,6 +20,7 @@ import PageContent from "../../components/PageContent";
  */
 function Module() {
     const token = JSON.parse(localStorage.getItem('token'))
+    const [exportedTextContent, setExportedTextContent] = useState('');
     if (token == null) {
         window.history.replaceState(null, '', '/Login');
         window.location.reload();
@@ -51,6 +52,16 @@ function Module() {
         if (lesson_content !== undefined) {
             const tts = lesson_content.replace(/<[^>]+>/g, '');
             setTTSContent(tts);
+
+            const parser = new DOMParser();
+
+            // Parse the HTML
+            const parsedHtml = parser.parseFromString(tts, 'text/html');
+
+            // Access the text content
+            let textContent = parsedHtml.body.textContent;
+            setExportedTextContent(textContent);
+            console.log(textContent);
         }
     }, [lesson_content]);
 
@@ -88,7 +99,7 @@ function Module() {
                                 {/*  {file_type === '.pdf' || file_type === '.docx' || file_type === '.doc' || file_type === '.txt' ? ( */}
                                 {lesson_id != null ? (
                                     <>
-                                        <TextSpeech speech_text={tts_content} />
+                                        <TextSpeech speech_text={exportedTextContent} />
                                         <div className="summarize-section">
                                             <button className='btn button-sidebar-wide'>Summarize</button>
                                             <div className="summary">

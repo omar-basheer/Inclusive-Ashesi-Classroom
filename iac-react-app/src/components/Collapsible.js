@@ -47,6 +47,7 @@ function Collapsible({ moduleDescription, files, lessons }) {
           '.pdf': 'Doc',
           '.doc': 'Doc',
           '.mp4': 'Video',
+          'txt': 'Doc',
         };
 
         return moduleTypeMappings[fileType] || 'default';
