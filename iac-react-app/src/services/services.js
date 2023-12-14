@@ -58,12 +58,6 @@ export const handleLogin = async (e, email, password, login, navigate) => {
 export const handleSignUp = async (e, student_id, firstName, lastName, email, password, confirmPassword, navigate) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-        // Display an error message or handle the mismatch
-        console.error('Passwords do not match!');
-        return;
-    }
-
     console.log('making api call...')
     try {
         const response = await fetch('http://localhost:8080/api/students/signup/', {

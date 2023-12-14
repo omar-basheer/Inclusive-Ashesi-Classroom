@@ -45,6 +45,32 @@ class FileSerializer(serializers.ModelSerializer):
         model = File
         fields = ['name', 'file']
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
 class AllLessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
