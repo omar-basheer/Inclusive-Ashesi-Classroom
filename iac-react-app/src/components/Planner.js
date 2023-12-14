@@ -70,7 +70,13 @@ const Planner = () => {
       badges: ['GitHub repository link and project report'],
       dueDate: '2023-12-15',
     },
-    // Add more assignments as needed
+    {
+      completed: true,
+      type: 'Project VIdeo',
+      title: 'Final Robotics Project Video',
+      badges: ['Zip file containing the project video and a report'],
+      dueDate: '2023-12-15',
+    },
   ];
 
   return (

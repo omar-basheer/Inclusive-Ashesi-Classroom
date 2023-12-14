@@ -36,14 +36,9 @@ function Dashboard() {
               <PageContent
                 contentTitle={info ? `${info.first_name} ${info.last_name}'s dashboard` : 'Loading...'}
               />
-              {/* Include the Planner component */}
               <Planner />
             </div>
           </div>
-          {/* Uncomment the following lines if you want to include the RightSide component */}
-          {/* <div className="iac-main-right-side-wrapper">
-            <RightSide />
-          </div> */}
         </div>
       </div>
     </div>
