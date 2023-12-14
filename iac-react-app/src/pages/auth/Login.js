@@ -29,7 +29,7 @@ function Login() {
                     <div class="ic-flash__icon">
                         <i class="icon-warning"></i>
                     </div>
-                    Invalid username or password. Trouble logging in? <a href="https://community.canvaslms.com/docs/DOC-25242-955611231352">Check out our Login FAQs</a>.
+                    Invalid username or password.
                 </div>)}
             <div className="login-top">
                 <div className="login-form container">

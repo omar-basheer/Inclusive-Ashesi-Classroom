@@ -55,7 +55,7 @@ export const handleLogin = async (e, email, password, login, navigate, setShowAl
  * @param {function} navigate - The function to navigate to a different screen.
  * @returns {Promise<void>} - A promise that resolves when the sign up process is complete.
  */
-export const handleSignUp = async (e, student_id, firstName, lastName, email, password, confirmPassword, navigate) => {
+export const handleSignUp = async (e, student_id, firstName, lastName, email, password, confirmPassword, navigate, setShowAlert) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
@@ -85,13 +85,15 @@ export const handleSignUp = async (e, student_id, firstName, lastName, email, pa
 
         if (response.ok) {
             if (response.status === 201) {
+                setShowAlert(true)
                 navigate('/Screening');
             }
             else {
                 console.error('Unexpected status code:', response.status);
             }
 
-        } else {
+        } else { 
+            setShowAlert(true) 
             // Display an error message or handle the failure
             console.error('Registration failed:', data.message);
         }
