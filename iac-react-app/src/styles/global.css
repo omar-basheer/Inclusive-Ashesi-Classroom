@@ -52,3 +52,57 @@ body{
     padding-left: 24px;
     position: relative;
 }
+
+.PlannerItem-styles__root {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Align children to start and end */
+    padding: 12px;
+    border: 1px solid #ddd;
+    margin-bottom: 8px;
+  }
+  
+  .PlannerItem-styles__completed {
+    margin-right: 12px;
+  }
+  
+  .PlannerItem-styles__icon {
+    margin-right: 12px;
+  }
+  
+  .PlannerItem-styles__layout {
+    flex-grow: 1;
+  }
+  
+  .PlannerItem-styles__details {
+    display: flex;
+    align-items: baseline;
+  }
+  
+  .PlannerItem-styles__type {
+    margin-right: 8px;
+  }
+  
+  .PlannerItem-styles__badges {
+    display: flex;
+    flex-direction: column;
+    margin-right: 8px;
+  }
+  
+  .PlannerItem-styles__badges .badge {
+    margin-bottom: 4px;
+    background-color: #ddd;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  
+  .PlannerItem-styles__metrics {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Align children to the end (right) */
+  }
+  
+  .PlannerItem-styles__due {
+    color: #888;
+  }
+  
