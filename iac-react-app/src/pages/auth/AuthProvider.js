@@ -19,7 +19,6 @@ function AuthProvider({ children }) {
     localStorage.setItem('token', JSON.stringify(token));
     localStorage.setItem('student_id', JSON.stringify(student_id));
     setUser({ token, student_id });
-    console.log(student_id);
   };
 
   const logout = () => {

@@ -13,16 +13,12 @@ function Login() {
     const { login } = useContext(AuthContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [loginError, setLoginError] = useState(false)
     const [showAlert, setShowAlert] = useState(false)
 
     useEffect(() => {
-        // Use setTimeout to hide the flash message after 2000 milliseconds (2 seconds)
         const timer = setTimeout(() => {
             setShowAlert(false);
         }, 2000);
-
-        // Clean up the timer on component unmount or when the flash message is hidden
         return () => clearTimeout(timer);
     }, [showAlert]);
 

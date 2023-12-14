@@ -40,6 +40,26 @@ html {
   background-color: #fff;
 
 }
+.flash-message-container1 {
+  font-size: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  padding: 6px 40px 6px 48px;
+  margin-top: 5px; 
+  min-height: 20px;
+  min-width: 17rem;
+  max-width: 32rem;
+  line-height: 1.3;
+  z-index: 2;
+  vertical-align: middle;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, .25);
+  border: 1px solid #353434a6;
+  border-radius: 6px;
+  background-color: #fff;
+
+}
 
 .login-container {
   display: flex;

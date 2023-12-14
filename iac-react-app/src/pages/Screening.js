@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import '../styles/global.css'
 import '../styles/right_side.css'
 import { useNavigate } from 'react-router-dom';
@@ -8,31 +8,53 @@ import RightSide from "../components/RightSide";
 
 function Screening() {
     const Title = "Screening Form";
+    const student_id = JSON.parse(localStorage.getItem('student_id'));
+    const [recommendations, setRecommendations] = useState([]);
+    const [showFlashMessage, setShowFlashMessage] = useState(false);
 
     const navigate = useNavigate();
 
     // Function to handle fetching data from the Google Spreadsheet
     const fetchDataFromSpreadsheet = async () => {
         try {
-            const response = await fetch('https://sheetdb.io/api/v1/furjhzg2u7fjt/search?StudentID=50502024');
+            const response = await fetch('https://sheetdb.io/api/v1/furjhzg2u7fjt/search?StudentID=' + student_id);
             const data = await response.json();
-
-            // Check if data is available
+    
             if (data && data.length > 0) {
                 const challenges = data[0]["Do you experience any challenges with the following? (Select as many that apply)"];
                 const challengesArray = challenges.split(',').map(item => item.trim());
-
-                // Use challengesArray to generate recommendations
-                const recommendations = generateRecommendations(challengesArray);
-                console.log('Recommendations:', recommendations);
+    
+                let recommendations = generateRecommendations(challengesArray);
+                const keyToExtract = "";
+                recommendations = recommendations[keyToExtract];
+                
+    
+                // Update the state here
+                setRecommendations(recommendations);
+                setShowFlashMessage(true);
             } else {
                 console.log('No data found.');
             }
-
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
+
+    useEffect(() => {
+        // Add a click event listener to the document body
+        const handleBodyClick = () => {
+            // Hide the flash message when clicking anywhere on the page
+            setShowFlashMessage(false);
+        };
+
+        // Attach the event listener
+        document.body.addEventListener('click', handleBodyClick);
+
+        // Clean up the event listener when the component is unmounted
+        return () => {
+            document.body.removeEventListener('click', handleBodyClick);
+        };
+    }, []);
 
     // Function to generate recommendations based on challenges
     const generateRecommendations = (challengesArray) => {
@@ -117,6 +139,20 @@ function Screening() {
     
         return recommendations;
     };
+    const flashMessageContent = (
+        showFlashMessage && (
+            <div className="flash-message-container1" aria-hidden="true">
+                <div className="ic-flash__icon"></div>
+                <p>Hi there, here are your recommendations:</p>
+                <ul>
+                    {recommendations.map((recommendation, index) => (
+                        <li key={index}>{recommendation}</li>
+                    ))}
+                </ul>
+            </div>
+        )
+    );
+    
     
 
     const formContent = `
@@ -144,14 +180,18 @@ function Screening() {
             Complete Form Submission
         </a>
     );
-
+    
     return (
         <div className="iac-app">
+             
+               
             <div className="iac-layout-columns">
+            
                 <div className="iac-main-app-content">
                     <Sidemenu />
                     <div className="iac-main-content-wrapper">
                         <div className="iac-main-content">
+                        {flashMessageContent}
                             <PageContent 
                                 contentTitle={Title}
                                 richContent={formContent}
