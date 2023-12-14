@@ -110,7 +110,6 @@ class File(models.Model):
     name = models.CharField(max_length=255)
     file_type = models.CharField(max_length=10)
     file = models.FileField(upload_to='files/')
-    file = models.FileField(upload_to='files/')
 
 class Lesson(models.Model):
     """
@@ -128,3 +127,4 @@ class Lesson(models.Model):
     lesson_name = models.CharField(max_length=100)
     lesson_file_type = models.CharField(max_length=10)
     lesson_content = models.TextField()
+

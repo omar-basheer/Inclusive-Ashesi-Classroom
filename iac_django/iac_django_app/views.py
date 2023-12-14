@@ -209,16 +209,4 @@ class GetLessonView(APIView):
     #         return HttpResponse(f"Error serving file: {str(e)}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-    # def get(self, request, file_id):
-    #     try:
-    #         file = File.objects.get(file_id=file_id)
-    #     except File.DoesNotExist:
-    #         return Response({"error": f"File with ID {file_id} not found."}, status=status.HTTP_404_NOT_FOUND)
 
-    #     # Assuming the 'file' field is a FileField
-    #     file_path = file.file.path
-
-    #     # Use Django's FileResponse to serve the file
-    #     response = FileResponse(open(file_path, 'rb'), content_type='application/octet-stream')
-    #     response['Content-Disposition'] = f'attachment; filename="{file.name}"'
-    #     return response
