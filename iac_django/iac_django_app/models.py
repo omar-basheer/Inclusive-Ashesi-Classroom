@@ -110,3 +110,13 @@ class File(models.Model):
     name = models.CharField(max_length=255)
     file_type = models.CharField(max_length=10)
     file = models.FileField(upload_to='files/')
+
+
+
+
+class Lesson(models.Model):
+    lesson_id = models.AutoField(primary_key=True)
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+    lesson_name = models.CharField(max_length=255)
+    lesson_content = models.TextField()
+    lesson_file_type = models.CharField(max_length=10)
