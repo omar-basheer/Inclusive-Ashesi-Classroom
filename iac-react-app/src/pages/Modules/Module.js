@@ -9,8 +9,9 @@ import RightSide from "../../components/RightSide";
 import TextSpeech from "../../components/TextSpeech";
 import VideoPlayer from "../../components/VideoPlayer";
 import FileViewer from "../../components/FileViewer";
-import { fetchModuleFile, fetchModuleLesson } from "../../services/services";
 import PageContent from "../../components/PageContent";
+import Summarizer from "../../components/Summarizer";
+import { fetchModuleFile, fetchModuleLesson } from "../../services/services";
 
 
 /**
@@ -28,7 +29,6 @@ function Module() {
     const { course_id } = useParams()
     const { file_id } = useParams()
     const { lesson_id } = useParams()
-    // if a module file is fetched, then the lesson_id is the same as the file_id
     const [file_url, setFileUrl] = useState();
     const [file_name, setFileName] = useState();
     const [file_type, setFileType] = useState();
@@ -51,19 +51,24 @@ function Module() {
     useEffect(() => {
         if (lesson_content !== undefined) {
             const tts = lesson_content.replace(/<[^>]+>/g, '');
-            setTTSContent(tts);
+            const formattedText = tts.replace(/([.!?])\s*(?=[A-Z])/g, "$1\n");
 
             const parser = new DOMParser();
 
             // Parse the HTML
-            const parsedHtml = parser.parseFromString(tts, 'text/html');
+            const parsedHtml = parser.parseFromString(formattedText, 'text/html');
 
             // Access the text content
-            let textContent = parsedHtml.body.textContent;
-            setExportedTextContent(textContent);
-            console.log(textContent);
+            // setExportedTextContent(parsedHtml.body.textContent);
+            setExportedTextContent(parsedHtml.body.textContent);
+            console.log(exportedTextContent);
+            
         }
     }, [lesson_content]);
+
+    useEffect(() => {
+        console.log('"'+ exportedTextContent +'"')
+      }, [exportedTextContent] )
 
     return (
         <div className="iac-app">
@@ -96,22 +101,10 @@ function Module() {
                         {/* <RightSide /> */}
                         <div className="side-aid-section">
                             <div >
-                                {/*  {file_type === '.pdf' || file_type === '.docx' || file_type === '.doc' || file_type === '.txt' ? ( */}
                                 {lesson_id != null ? (
                                     <>
                                         <TextSpeech speech_text={exportedTextContent} />
-                                        <div className="summarize-section">
-                                            <button className='btn button-sidebar-wide'>Summarize</button>
-                                            <div className="summary">
-                                                <div className="Box">
-                                                    <label> Summary</label>
-                                                    <div className="summary-box">
-                                                        <div className="summary-text"> Summary </div>
-                                                        <span className="box-bottom">0 words</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <Summarizer summary_text={exportedTextContent}/>
                                     </>
                                 ) : null}
                             </div>
