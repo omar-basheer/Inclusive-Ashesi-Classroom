@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import OpenAI from 'openai';
-import { summarize } from "../services/services";
+import CircularProgress from '@mui/joy/CircularProgress';
 
 function Summarizer({ summary_text }) {
 	const openai = new OpenAI({
-		apiKey: "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",
+		apiKey: "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",
 		dangerouslyAllowBrowser: true
 	});
 
 	const [summary, setSummary] = useState('');
 	const [displayedWords, setDisplayedWords] = useState('');
+	const [loading, setLoading] = useState(false);
 
 	const summarize = async () => {
+		setLoading(true);
 		console.log("making request to openai...")
 		try {
 			const response = await openai.chat.completions.create({
@@ -19,7 +21,7 @@ function Summarizer({ summary_text }) {
 				messages: [
 					{
 						"role": "system",
-						"content": "Summarise the following text to make it easy to read by dyslexic students:"
+						"content": "Generate a bullet point summary, of following text that captures main content:"
 					},
 					{
 						"role": "user",
@@ -36,6 +38,8 @@ function Summarizer({ summary_text }) {
 
 		} catch (error) {
 			console.error('An error occurred while summarizing:', error);
+		} finally {
+			setLoading(false); // Set loading to false after the request is complete (success or error)
 		}
 
 	}
@@ -72,6 +76,11 @@ function Summarizer({ summary_text }) {
 				<div className="Box">
 					<label> Summary</label>
 					<div className="summary-box">
+						{loading && (
+							<div className="progress-indicator">
+								<CircularProgress color="neutral"/>
+							</div>
+						)}
 						<div className="summary-text">{displayedWords}</div>
 						<span className="box-bottom"> </span>
 					</div>

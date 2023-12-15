@@ -5,6 +5,7 @@ import "../../styles/modules.css"
 import Sidemenu from "../../components/Sidemenu";
 import Collapsible from "../../components/Collapsible";
 import { fetchCourseModules } from "../../services/services";
+import CircularProgress from '@mui/joy/CircularProgress';
 
 
 /**
@@ -16,10 +17,13 @@ function Modules() {
     const token = JSON.parse(localStorage.getItem('token'))
     const { course_id } = useParams();
     const [modules, setModules] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchCourseModules(course_id, token, setModules);
-    }, [course_id]);
+        fetchCourseModules(course_id, token, setModules)
+            .then(() => setLoading(false)) 
+            .catch(() => setLoading(false));
+    }, [course_id, token]);
 
     return (
         <div className="iac-app">
@@ -32,6 +36,17 @@ function Modules() {
                         <div className="iac-main-content">
                             <div className="header-bar"></div>
                             <div className="item-group-container">
+                            {loading ? (
+                                <div className='circular-progress-container' style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    height: '100%', 
+                                    paddingTop: '20px'
+                                }}>
+                                    <CircularProgress color="neutral" />
+                                </div>
+                                 ) : (<>
                                 <div className="context-modules">
                                     {modules.map(module => (
                                         <Collapsible
@@ -42,6 +57,7 @@ function Modules() {
                                         />
                                     ))}
                                 </div>
+                                </>)}
                             </div>
                         </div>
                     </div>
