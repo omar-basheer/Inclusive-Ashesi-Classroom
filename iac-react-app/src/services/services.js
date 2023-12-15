@@ -1,4 +1,4 @@
-
+import React, { useEffect, useState } from "react";
 /**
  * Handles the login functionality.
  * 
@@ -10,36 +10,35 @@
  * @returns {void}
  */
 export const handleLogin = async (e, email, password, login, navigate, setShowAlert) => {
-    e.preventDefault();
+	e.preventDefault();
 
-    try {
-        const response = await fetch('http://localhost:8080/api/students/login/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password }),
-        })
+	try {
+		const response = await fetch('http://localhost:8080/api/students/login/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ email, password }),
+		})
 
-        if (!response.ok) {
-            console.log("login request error: login failed")
-            setShowAlert(true)
-            return
-        }
-        const data = await response.json()
-        const { token, student_id } = data
+		if (!response.ok) {
+			console.log("login request error: login failed")
+			setShowAlert(true)
+			return
+		}
+		const data = await response.json()
+		const { token, student_id } = data
 
-        if (token) {
-            login(token, student_id);
-            alert("You are successfully logged in");
-            navigate('/Dashboard');
-        }
-        else {
-            navigate('/Login');
-        }
-    } catch (error) {
-        console.error('An error occurred during login:', error);
-    }
+		if (token) {
+			login(token, student_id);
+			navigate('/Dashboard');
+		}
+		else {
+			navigate('/Login');
+		}
+	} catch (error) {
+		console.error('An error occurred during login:', error);
+	}
 }
 
 /**
@@ -56,44 +55,44 @@ export const handleLogin = async (e, email, password, login, navigate, setShowAl
  * @returns {Promise<void>} - A promise that resolves when the sign up process is complete.
  */
 export const handleSignUp = async (e, student_id, firstName, lastName, email, password, confirmPassword, navigate, setShowAlert) => {
-    e.preventDefault();
+	e.preventDefault();
 
-    console.log('making api call...')
-    try {
-        const response = await fetch('http://localhost:8080/api/students/signup/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                student_id: student_id,
-                first_name: firstName,
-                last_name: lastName,
-                email: email,
-                password: password,
-            }),
-        });
+	console.log('making api call...')
+	try {
+		const response = await fetch('http://localhost:8080/api/students/signup/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				student_id: student_id,
+				first_name: firstName,
+				last_name: lastName,
+				email: email,
+				password: password,
+			}),
+		});
 
         const data = await response.json();
         
 
-        if (response.ok) {
-            if (response.status === 201) {
-                setShowAlert(true)
-                navigate('/Screening');
-            }
-            else {
-                console.error('Unexpected status code:', response.status);
-            }
+		if (response.ok) {
+			if (response.status === 201) {
+				setShowAlert(true)
+				navigate('/Screening');
+			}
+			else {
+				console.error('Unexpected status code:', response.status);
+			}
 
-        } else { 
-            setShowAlert(true) 
-            // Display an error message or handle the failure
-            console.error('Registration failed:', data.message);
-        }
-    } catch (error) {
-        console.error('Error during registration:', error.message);
-    }
+		} else {
+			setShowAlert(true)
+			// Display an error message or handle the failure
+			console.error('Registration failed:', data.message);
+		}
+	} catch (error) {
+		console.error('Error during registration:', error.message);
+	}
 }
 
 /**
@@ -104,25 +103,25 @@ export const handleSignUp = async (e, student_id, firstName, lastName, email, pa
  * @returns {void}
  */
 export const fetchStudentData = async (student_id, token, info, setInfo) => {
-    try {
-        const response = await fetch(`http://localhost:8080/api/students/get/${student_id}/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Token ' + token
-            },
-        })
-        if (!response.ok) {
-            console.log("student fetch error: failed to fetch student data")
-            return
-        }
-        const data = await response.json();
-        setInfo(data);
-        localStorage.setItem('info', JSON.stringify(info));
-        // console.log(info)
-    } catch (error) {
-        console.error('Error fetching student data:', error);
-    }
+	try {
+		const response = await fetch(`http://localhost:8080/api/students/get/${student_id}/`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Token ' + token
+			},
+		})
+		if (!response.ok) {
+			console.log("student fetch error: failed to fetch student data")
+			return
+		}
+		const data = await response.json();
+		setInfo(data);
+		localStorage.setItem('info', JSON.stringify(info));
+		// console.log(info)
+	} catch (error) {
+		console.error('Error fetching student data:', error);
+	}
 };
 
 /**
@@ -133,19 +132,19 @@ export const fetchStudentData = async (student_id, token, info, setInfo) => {
  * @returns {Promise<void>} - A promise that resolves when the data is fetched and set successfully.
  */
 export const fetchStudentCourseData = async (student_id, token, setCourses) => {
-    try {
-        const response = await fetch(`http://localhost:8080/api/students/courses/${student_id}/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Token ' + token
-            },
-        })
-        const data = await response.json();
-        setCourses(data);
-    } catch (error) {
-        console.error('Error fetching courses:', error);
-    }
+	try {
+		const response = await fetch(`http://localhost:8080/api/students/courses/${student_id}/`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Token ' + token
+			},
+		})
+		const data = await response.json();
+		setCourses(data);
+	} catch (error) {
+		console.error('Error fetching courses:', error);
+	}
 };
 
 /**
@@ -158,20 +157,20 @@ export const fetchStudentCourseData = async (student_id, token, setCourses) => {
  * @returns {Promise<void>} - A promise that resolves when the course data is fetched and the state is updated.
  */
 export const fetchCourseData = async (course_id, token, setCourseTitle, setHomeContent) => {
-    try {
-        const response = await fetch(`http://localhost:8080/api/courses/${course_id}/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Token ' + token
-            },
-        });
-        const data = await response.json();
-        setCourseTitle(`[${data.course_id}] - ${data.course_name}`);
-        setHomeContent(data.course_description);
-    } catch (error) {
-        console.error('Error fetching course data:', error);
-    }
+	try {
+		const response = await fetch(`http://localhost:8080/api/courses/${course_id}/`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Token ' + token
+			},
+		});
+		const data = await response.json();
+		setCourseTitle(`[${data.course_id}] - ${data.course_name}`);
+		setHomeContent(data.course_description);
+	} catch (error) {
+		console.error('Error fetching course data:', error);
+	}
 
 }
 
@@ -183,20 +182,20 @@ export const fetchCourseData = async (course_id, token, setCourseTitle, setHomeC
  * @returns {Promise<void>} - A promise that resolves when the modules are fetched and set.
  */
 export const fetchCourseModules = async (course_id, token, setModules) => {
-    try {
-        const response = await fetch(`http://localhost:8080/api/courses/${course_id}/modules/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Token ' + token
-            },
-        });
-        const data = await response.json();
-        // console.log(data)
-        setModules(data);
-    } catch (error) {
-        console.error('Error fetching modules data', error);
-    }
+	try {
+		const response = await fetch(`http://localhost:8080/api/courses/${course_id}/modules/`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Token ' + token
+			},
+		});
+		const data = await response.json();
+		// console.log(data)
+		setModules(data);
+	} catch (error) {
+		console.error('Error fetching modules data', error);
+	}
 };
 
 /**
@@ -210,22 +209,22 @@ export const fetchCourseModules = async (course_id, token, setModules) => {
  * @returns {Promise<void>} - A promise that resolves when the file is fetched successfully.
  */
 export const fetchModuleFile = async (file_id, token, setFileUrl, setFileName, setFileType) => {
-    try {
-        const response = await fetch(`http://localhost:8080/api/files/${file_id}/`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Token ' + token
-            },
-        });
-        const data = await response.json();
-        console.log("file id")
-        setFileUrl(data.file)
-        setFileName(data.name)
-        setFileType(data.file_type)
-    } catch (error) {
-        console.error('Error fetching file', error);
-    }
+	try {
+		const response = await fetch(`http://localhost:8080/api/files/${file_id}/`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Token ' + token
+			},
+		});
+		const data = await response.json();
+		console.log("file id")
+		setFileUrl(data.file)
+		setFileName(data.name)
+		setFileType(data.file_type)
+	} catch (error) {
+		console.error('Error fetching file', error);
+	}
 };
 
 

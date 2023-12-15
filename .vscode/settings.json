@@ -3,6 +3,7 @@
     "files.autoSave": "afterDelay",
     "editor.fontFamily": "Menlo",
     "workbench.colorTheme": "GrunBoxTheme",
-    "swipeToNavigate.action": "tabs"
+    "swipeToNavigate.action": "tabs",
+    "editor.tabSize": 3
     
 }
