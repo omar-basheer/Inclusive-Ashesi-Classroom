@@ -4,7 +4,7 @@ import { summarize } from "../services/services";
 
 function Summarizer({ summary_text }) {
 	const openai = new OpenAI({
-		apiKey: "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",
+		apiKey: "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",
 		dangerouslyAllowBrowser: true
 	});
 

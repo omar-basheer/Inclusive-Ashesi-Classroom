@@ -31,7 +31,6 @@ export const handleLogin = async (e, email, password, login, navigate, setShowAl
 
 		if (token) {
 			login(token, student_id);
-			alert("You are successfully logged in");
 			navigate('/Dashboard');
 		}
 		else {
