@@ -75,7 +75,7 @@ export const handleSignUp = async (e, student_id, firstName, lastName, email, pa
         });
 
         const data = await response.json();
-        console.log(data.data)
+        
 
         if (response.ok) {
             if (response.status === 201) {
@@ -250,7 +250,6 @@ export const fetchModuleLesson = async (lesson_id, token, setLessonTitle, setLes
         const data = await response.json();
         setLessonTitle(data.lesson_name);
         setLessonContent(data.lesson_content);
-        console.log(data)
     } catch (error) {
         console.error('Error fetching lesson data:', error);
     }
