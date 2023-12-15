@@ -12,6 +12,7 @@ import FileViewer from "../../components/FileViewer";
 import PageContent from "../../components/PageContent";
 import Summarizer from "../../components/Summarizer";
 import { fetchModuleFile, fetchModuleLesson } from "../../services/services";
+import CircularProgress from '@mui/joy/CircularProgress';
 
 
 /**
@@ -35,16 +36,21 @@ function Module() {
     const [lesson_title, setLessonTitle] = useState();
     const [lesson_content, setLessonContent] = useState();
     const [tts_content, setTTSContent] = useState();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (file_id) {
-            fetchModuleFile(file_id, token, setFileUrl, setFileName, setFileType);
+            fetchModuleFile(file_id, token, setFileUrl, setFileName, setFileType)
+                .then(() => setLoading(false))
+                .catch(() => setLoading(false));
         }
     }, [file_id])
     useEffect(() => {
         if (lesson_id) {
             console.log("fetching lesson")
-            fetchModuleLesson(lesson_id, token, setLessonTitle, setLessonContent);
+            fetchModuleLesson(lesson_id, token, setLessonTitle, setLessonContent)
+                .then(() => setLoading(false))
+                .catch(() => setLoading(false));
         }
     }, [lesson_id])
 
@@ -62,13 +68,13 @@ function Module() {
             // setExportedTextContent(parsedHtml.body.textContent);
             setExportedTextContent(parsedHtml.body.textContent);
             console.log(exportedTextContent);
-            
+
         }
     }, [lesson_content]);
 
     useEffect(() => {
-        console.log('"'+ exportedTextContent +'"')
-      }, [exportedTextContent] )
+        console.log('"' + exportedTextContent + '"')
+    }, [exportedTextContent])
 
     return (
         <div className="iac-app">
@@ -80,18 +86,33 @@ function Module() {
                             <h2> {file_name} </h2>
                             <div className="doc-preview">
                                 <div className="left-doc">
-                                    {file_type === '.pdf' || file_type === '.docx' || file_type === '.doc' ? (
+                                    {loading ? (
+                                        // Render loading indicator while content is being fetched
+                                        <div className='circular-progress-container' style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            height: '100%',
+                                        }}>
+                                            <CircularProgress color="neutral" />
+                                        </div>
+                                    ) : (
+                                        // Render content when loading is complete
                                         <>
-                                            <FileViewer fileUrl={file_url} />
+                                            {file_type === '.pdf' || file_type === '.docx' || file_type === '.doc' ? (
+                                                <>
+                                                    <FileViewer fileUrl={file_url} />
+                                                </>
+                                            ) : file_type === '.mp4' || file_type === '.mov' || file_type === '.avi' || file_type === '.wmv' ? (
+                                                <VideoPlayer />
+                                            ) : lesson_id != null ? (
+                                                <>
+                                                    <PageContent contentTitle={lesson_title} richContent={lesson_content}
+                                                    />
+                                                </>
+                                            ) : null}
                                         </>
-                                    ) : file_type === '.mp4' || file_type === '.mov' || file_type === '.avi' || file_type === '.wmv' ? (
-                                        <VideoPlayer />
-                                    ) : lesson_id != null ? (
-                                        <>
-                                            <PageContent contentTitle={lesson_title} richContent={lesson_content}
-                                            />
-                                        </>
-                                    ) : null}
+                                    )}
                                 </div>
                             </div>
                             <div className="sequence-footer" ></div>
@@ -104,7 +125,7 @@ function Module() {
                                 {lesson_id != null ? (
                                     <>
                                         <TextSpeech speech_text={exportedTextContent} />
-                                        <Summarizer summary_text={exportedTextContent}/>
+                                        <Summarizer summary_text={exportedTextContent} />
                                     </>
                                 ) : null}
                             </div>

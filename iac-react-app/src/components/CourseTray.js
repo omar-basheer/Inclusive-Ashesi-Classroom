@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { fetchStudentCourseData } from '../services/services';
 import "../styles/global.css"
 import "../styles/course_tray.css"
+import CircularProgress from '@mui/joy/CircularProgress';
+
 // import { useAuth } from '../pages/auth/AuthProvider';
 
 
@@ -13,14 +15,17 @@ import "../styles/course_tray.css"
  * @param {Function} props.closeTray - The function to close the tray.
  * @returns {JSX.Element} The CourseTray component.
  */
-function CourseTray({closeTray }) {
+function CourseTray({ closeTray }) {
     const [courses, setCourses] = useState([]);
     const student_id = JSON.parse(localStorage.getItem('student_id'))
     const token = JSON.parse(localStorage.getItem('token'))
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetchStudentCourseData(student_id, token, setCourses);
-    }, []);
+        fetchStudentCourseData(student_id, token, setCourses)
+            .then(() => setLoading(false)) // Set loading to false when courses are fetched
+            .catch(() => setLoading(false));
+    }, [student_id, token]);
 
     const handleCourseLinkClick = () => {
         closeTray();
@@ -55,14 +60,20 @@ function CourseTray({closeTray }) {
                                     </li>
                                     <li className='list-item'><hr></hr></li>
                                     <li className='list-item'>
-                                        <ul className='block-list'>
-                                            {courses.map(course => (
-                                                <li className='list-item' key={course.course_id} onClick={handleCourseLinkClick}>
-                                                    <Link to={`/${course.course_id}`} className='view-link'>{`[${course.course_id}] - ${course.course_name}`}</Link>
-                                                    <div className='subtext'>23-24-SEM1</div>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                        {loading ? (
+                                            <div className='circular-progress-container'>
+                                                <CircularProgress color="neutral"/>
+                                            </div>
+                                        ) : (<>
+                                            <ul className='block-list'>
+                                                {courses.map(course => (
+                                                    <li className='list-item' key={course.course_id} onClick={handleCourseLinkClick}>
+                                                        <Link to={`/${course.course_id}`} className='view-link'>{`[${course.course_id}] - ${course.course_name}`}</Link>
+                                                        <div className='subtext'>23-24-SEM1</div>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </>)}
                                     </li>
                                 </ul>
                                 <br></br>
