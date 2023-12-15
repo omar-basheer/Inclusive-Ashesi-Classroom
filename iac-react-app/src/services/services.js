@@ -31,7 +31,6 @@ export const handleLogin = async (e, email, password, login, navigate, setShowAl
 
 		if (token) {
 			login(token, student_id);
-			alert("You are successfully logged in");
 			navigate('/Dashboard');
 		}
 		else {
@@ -74,8 +73,8 @@ export const handleSignUp = async (e, student_id, firstName, lastName, email, pa
 			}),
 		});
 
-		const data = await response.json();
-		console.log(data.data)
+        const data = await response.json();
+        
 
 		if (response.ok) {
 			if (response.status === 201) {
@@ -239,20 +238,19 @@ export const fetchModuleFile = async (file_id, token, setFileUrl, setFileName, s
  * @returns {Promise<void>} - A promise that resolves when the module HTML content is fetched and the lesson title and content are set.
  */
 export const fetchModuleLesson = async (lesson_id, token, setLessonTitle, setLessonContent) => {
-	try {
-		const response = await fetch(`http://localhost:8080/api/lessons/${lesson_id}/`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'Token ' + token
-			},
-		});
-		const data = await response.json();
-		setLessonTitle(data.lesson_name);
-		setLessonContent(data.lesson_content);
-		// console.log(data)
-	} catch (error) {
-		console.error('Error fetching lesson data:', error);
-	}
+    try {
+        const response = await fetch(`http://localhost:8080/api/lessons/${lesson_id}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + token
+            },
+        });
+        const data = await response.json();
+        setLessonTitle(data.lesson_name);
+        setLessonContent(data.lesson_content);
+    } catch (error) {
+        console.error('Error fetching lesson data:', error);
+    }
 
 }
